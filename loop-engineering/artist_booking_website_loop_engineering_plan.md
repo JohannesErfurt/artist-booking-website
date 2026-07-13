@@ -6,7 +6,7 @@ This file separates the MVP into work a coding agent can complete autonomously a
 
 The goal is to support loop engineering: the coding agent should keep completing verifiable tasks, update checklist status, and only stop when a human checkpoint is genuinely required.
 
-Each checklist item is verifiable through `mvp_checklist_acceptance_matrix.md`. A task is not done until its acceptance criteria are satisfied and its verification step has run or is recorded as blocked in `mvp_progress.md`.
+Each checklist item is verifiable through `loop-engineering/mvp_checklist_acceptance_matrix.md`. A task is not done until its acceptance criteria are satisfied and its verification step has run or is recorded as blocked in `loop-engineering/mvp_progress.md`.
 
 ---
 
@@ -404,7 +404,7 @@ The coding agent should follow these rules while working through the MVP.
 - [ ] Artist receives booking notification emails from real submissions
 - [ ] Cloudflare Turnstile keys are configured
 - [ ] Turnstile verification rejects invalid production submissions
-- [ ] Integration verification results are recorded in `mvp_progress.md`
+- [ ] Integration verification results are recorded in `loop-engineering/mvp_progress.md`
 
 ## Production MVP Complete
 

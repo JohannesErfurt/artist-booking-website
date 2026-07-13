@@ -4,21 +4,21 @@ Use these gates before marking work as complete.
 
 ## Task Gate
 
-- [ ] The task has a corresponding acceptance criterion in `mvp_checklist_acceptance_matrix.md`.
+- [ ] The task has a corresponding acceptance criterion in `loop-engineering/mvp_checklist_acceptance_matrix.md`.
 - [ ] The implementation satisfies the criterion.
 - [ ] The relevant verification step has run or is documented as blocked.
-- [ ] `mvp_progress.md` is updated if the task changes project state.
+- [ ] `loop-engineering/mvp_progress.md` is updated if the task changes project state.
 
 ## Phase Gate
 
 - [ ] All tasks in the phase are `DONE`, `BLOCKED`, or explicitly `DEFERRED`.
-- [ ] Relevant acceptance criteria in `mvp_acceptance_criteria.md` are satisfied.
+- [ ] Relevant acceptance criteria in `loop-engineering/mvp_acceptance_criteria.md` are satisfied.
 - [ ] Lint has run if the app exists.
 - [ ] Typecheck has run if TypeScript is configured.
 - [ ] Tests have run when required by `docs/verification.md`.
 - [ ] Production build has run if the app exists.
 - [ ] Manual QA has run for UI-facing work.
-- [ ] Blockers and assumptions are recorded in `mvp_progress.md`.
+- [ ] Blockers and assumptions are recorded in `loop-engineering/mvp_progress.md`.
 
 ## Release Gate
 

@@ -2,14 +2,14 @@
 
 This file defines the commands and checks the agent should use while implementing the MVP.
 
-Some commands may not exist until the project is initialized. If a command is unavailable, record that in `mvp_progress.md`.
+Some commands may not exist until the project is initialized. If a command is unavailable, record that in `loop-engineering/mvp_progress.md`.
 
 ## Runtime and Package Manager
 
 - Node.js: `20.x` LTS or newer.
 - Package manager: `npm`, unless a different lockfile is intentionally introduced.
 
-If implementation requires a different runtime or package manager, update this file, `README.md`, and `mvp_progress.md`.
+If implementation requires a different runtime or package manager, update this file, `README.md`, and `loop-engineering/mvp_progress.md`.
 
 ## Expected Commands
 
@@ -149,7 +149,7 @@ Tests are not required for:
 - Placeholder copy changes.
 - Static layout changes that are adequately covered by manual QA.
 
-If tests are required but no test framework exists yet, the agent should either add an appropriate minimal test setup for the changed area or record the missing test framework as a blocker or assumption in `mvp_progress.md`.
+If tests are required but no test framework exists yet, the agent should either add an appropriate minimal test setup for the changed area or record the missing test framework as a blocker or assumption in `loop-engineering/mvp_progress.md`.
 
 Before marking a major phase done:
 
@@ -157,4 +157,4 @@ Before marking a major phase done:
 - Run typecheck.
 - Run tests if available.
 - Run production build.
-- Update `mvp_progress.md`.
+- Update `loop-engineering/mvp_progress.md`.

@@ -1,6 +1,6 @@
 # Manual QA Checklist
 
-Use this checklist for human-readable verification of the MVP. The agent should update `mvp_progress.md` with relevant results.
+Use this checklist for human-readable verification of the MVP. The agent should update `loop-engineering/mvp_progress.md` with relevant results.
 
 ## Global Layout
 

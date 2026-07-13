@@ -52,7 +52,7 @@ The MVP should be production-ready once the required human-provided content, cre
 - Advanced analytics and monitoring.
 - AI booking assistant.
 
-Later improvements are tracked in `artist_booking_website_later_improvements.md`.
+Later improvements are tracked in `docs/artist_booking_website_later_improvements.md`.
 
 ## Constraints
 
@@ -68,12 +68,12 @@ Later improvements are tracked in `artist_booking_website_later_improvements.md`
 ## Source of Truth Files
 
 - `AGENTS.md`: operating rules for coding agents.
-- `artist_booking_website_mvp_plan.md`: original MVP checklist.
-- `artist_booking_website_loop_engineering_plan.md`: loop-ready split between coding-agent work and human-input work.
-- `mvp_acceptance_criteria.md`: acceptance criteria for major MVP sections.
-- `mvp_checklist_acceptance_matrix.md`: per-checklist-item acceptance criteria and verification steps.
-- `mvp_progress.md`: live progress, blockers, assumptions, and verification log.
-- `human_inputs_needed.md`: human-owned inputs required for production readiness.
+- `docs/artist_booking_website_mvp_plan.md`: original MVP checklist.
+- `loop-engineering/artist_booking_website_loop_engineering_plan.md`: loop-ready split between coding-agent work and human-input work.
+- `loop-engineering/mvp_acceptance_criteria.md`: acceptance criteria for major MVP sections.
+- `loop-engineering/mvp_checklist_acceptance_matrix.md`: per-checklist-item acceptance criteria and verification steps.
+- `loop-engineering/mvp_progress.md`: live progress, blockers, assumptions, and verification log.
+- `loop-engineering/human_inputs_needed.md`: human-owned inputs required for production readiness.
 - `docs/architecture.md`: intended technical architecture.
 - `docs/verification.md`: verification commands and rules.
 - `docs/manual_qa.md`: manual QA checklist.
@@ -83,13 +83,13 @@ Later improvements are tracked in `artist_booking_website_later_improvements.md`
 
 ## Execution Rules
 
-- Start with this file, then follow `artist_booking_website_loop_engineering_plan.md`.
+- Start with this file, then follow `loop-engineering/artist_booking_website_loop_engineering_plan.md`.
 - Prefer the next unblocked task near the top of the plan.
-- For each task, check `mvp_acceptance_criteria.md` before marking it done.
-- Update `mvp_progress.md` after each implementation loop, verification run, or blocker discovery.
-- Record important assumptions in `mvp_progress.md`.
+- For each task, check `loop-engineering/mvp_acceptance_criteria.md` before marking it done.
+- Update `loop-engineering/mvp_progress.md` after each implementation loop, verification run, or blocker discovery.
+- Record important assumptions in `loop-engineering/mvp_progress.md`.
 - Record meaningful technical decisions in `docs/decisions.md`.
-- If a task requires missing human input, add it to `human_inputs_needed.md` or mark the existing item as blocked in `mvp_progress.md`.
+- If a task requires missing human input, add it to `loop-engineering/human_inputs_needed.md` or mark the existing item as blocked in `loop-engineering/mvp_progress.md`.
 - Run the relevant verification commands from `docs/verification.md`.
 - Use `docs/manual_qa.md` for UI and production smoke checks.
 - Use `docs/quality_gates.md` before marking a phase complete.
@@ -98,11 +98,11 @@ Later improvements are tracked in `artist_booking_website_later_improvements.md`
 
 The actionable checklist is maintained in:
 
-- `artist_booking_website_loop_engineering_plan.md`
+- `loop-engineering/artist_booking_website_loop_engineering_plan.md`
 
 The original MVP checklist is maintained in:
 
-- `artist_booking_website_mvp_plan.md`
+- `docs/artist_booking_website_mvp_plan.md`
 
 The agent should treat the loop-engineering plan as the primary execution checklist because it separates autonomous work from human-input work.
 
@@ -110,8 +110,8 @@ The agent should treat the loop-engineering plan as the primary execution checkl
 
 Acceptance criteria are maintained in:
 
-- `mvp_acceptance_criteria.md`
-- `mvp_checklist_acceptance_matrix.md`
+- `loop-engineering/mvp_acceptance_criteria.md`
+- `loop-engineering/mvp_checklist_acceptance_matrix.md`
 
 A major section should not be marked complete unless its acceptance criteria are satisfied or explicitly documented as blocked.
 
@@ -128,13 +128,13 @@ When the project exists, major phases should normally pass:
 - `npm run test`, if tests are configured
 - `npm run build`
 
-If a command does not exist yet, the agent should record that in `mvp_progress.md` rather than silently skipping it.
+If a command does not exist yet, the agent should record that in `loop-engineering/mvp_progress.md` rather than silently skipping it.
 
 ## Progress Tracking
 
 Progress is maintained in:
 
-- `mvp_progress.md`
+- `loop-engineering/mvp_progress.md`
 
 The progress file should track:
 
@@ -165,7 +165,7 @@ The progress file should track:
 - [ ] Typecheck passes, if configured.
 - [ ] Tests pass, if configured.
 - [ ] Production build passes.
-- [ ] `mvp_progress.md` is updated.
+- [ ] `loop-engineering/mvp_progress.md` is updated.
 
 ### Integration MVP Done
 
@@ -176,7 +176,7 @@ The progress file should track:
 - [ ] Booking notification emails are received by the configured recipient.
 - [ ] Cloudflare Turnstile keys are configured.
 - [ ] Turnstile verification rejects invalid production submissions.
-- [ ] Integration verification results are recorded in `mvp_progress.md`.
+- [ ] Integration verification results are recorded in `loop-engineering/mvp_progress.md`.
 
 ### Production MVP Done
 

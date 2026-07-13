@@ -4,12 +4,13 @@ This repository is intended to support loop engineering: a coding agent should b
 
 ## Primary Planning Files
 
-- `artist_booking_website_mvp_plan.md`: original MVP checklist.
-- `artist_booking_website_loop_engineering_plan.md`: split between autonomous agent work and human-input checkpoints.
-- `mvp_acceptance_criteria.md`: acceptance criteria for major MVP sections.
-- `mvp_checklist_acceptance_matrix.md`: per-checklist-item acceptance criteria and verification steps.
-- `mvp_progress.md`: live progress, blockers, assumptions, and verification log.
-- `human_inputs_needed.md`: content, credentials, legal, account, and deployment inputs required from the human owner.
+- `loop-engineering/mvp_task_spec.md`: canonical starting point for loop engineering.
+- `docs/artist_booking_website_mvp_plan.md`: original MVP checklist.
+- `loop-engineering/artist_booking_website_loop_engineering_plan.md`: split between autonomous agent work and human-input checkpoints.
+- `loop-engineering/mvp_acceptance_criteria.md`: acceptance criteria for major MVP sections.
+- `loop-engineering/mvp_checklist_acceptance_matrix.md`: per-checklist-item acceptance criteria and verification steps.
+- `loop-engineering/mvp_progress.md`: live progress, blockers, assumptions, and verification log.
+- `loop-engineering/human_inputs_needed.md`: content, credentials, legal, account, and deployment inputs required from the human owner.
 
 ## Loop Rules
 
@@ -17,7 +18,7 @@ This repository is intended to support loop engineering: a coding agent should b
 - Prefer the next unblocked task near the top of the plan.
 - Complete local/code tasks with clearly labeled placeholders when final human content is missing.
 - Do not invent real artist biography, testimonials, legal details, business claims, credentials, domains, or account information.
-- If a task needs secrets, account access, payment, legal approval, final content, or unavailable media, mark it as blocked in `mvp_progress.md` and continue with the next unblocked task.
+- If a task needs secrets, account access, payment, legal approval, final content, or unavailable media, mark it as blocked in `loop-engineering/mvp_progress.md` and continue with the next unblocked task.
 - Keep edits scoped to the task being performed.
 - Do not revert unrelated user changes.
 - Do not commit secrets, local `.env` files, build output, or dependency folders.
@@ -44,7 +45,7 @@ Minimum expectations:
 - Run production build before marking a phase complete.
 - For UI changes, perform the relevant manual QA checklist from `docs/manual_qa.md`.
 
-If a verification command cannot run because the project is not initialized yet or dependencies are missing, record that in `mvp_progress.md`.
+If a verification command cannot run because the project is not initialized yet or dependencies are missing, record that in `loop-engineering/mvp_progress.md`.
 
 ## Repo Conventions
 
@@ -65,10 +66,10 @@ If a verification command cannot run because the project is not initialized yet 
 
 Before marking a task or phase `DONE`:
 
-- Acceptance criteria in `mvp_acceptance_criteria.md` and `mvp_checklist_acceptance_matrix.md` are satisfied or blocked.
+- Acceptance criteria in `loop-engineering/mvp_acceptance_criteria.md` and `loop-engineering/mvp_checklist_acceptance_matrix.md` are satisfied or blocked.
 - Required verification commands from `docs/verification.md` have run or have documented blockers.
 - Relevant manual QA from `docs/manual_qa.md` has been performed for UI changes.
-- `mvp_progress.md` has been updated with results, assumptions, and blockers.
+- `loop-engineering/mvp_progress.md` has been updated with results, assumptions, and blockers.
 - No secrets, local env files, build output, dependency folders, or unrelated generated files are included.
 
 ## Rollback and Safety Rules
@@ -76,7 +77,7 @@ Before marking a task or phase `DONE`:
 - Do not delete or overwrite user content unless the user explicitly asks.
 - Do not run destructive Git commands such as reset, clean, or checkout to discard changes unless explicitly requested.
 - If a change causes verification failure, prefer a small forward fix.
-- If a forward fix is not obvious, record the failure in `mvp_progress.md` and ask before broad rewrites.
+- If a forward fix is not obvious, record the failure in `loop-engineering/mvp_progress.md` and ask before broad rewrites.
 - Keep generated or experimental files easy to identify.
 
 ## Placeholder Policy
