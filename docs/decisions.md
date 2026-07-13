@@ -41,6 +41,30 @@ Production launch requires human-provided content, credentials, legal approval, 
 Alternatives considered:
 A single MVP checklist.
 
-Impact:
-The agent can complete local/code work autonomously while marking external tasks as blocked until human input is available.
+## 2026-07-13 - Local booking fallback without Supabase
 
+Decision:
+Store booking requests in `data/booking-requests.json` when Supabase credentials are not configured.
+
+Reason:
+Local development and agent verification should work without human-provided Supabase credentials.
+
+Alternatives considered:
+In-memory storage only; requiring Supabase for all environments.
+
+Impact:
+The booking API remains testable locally while production can use Supabase once credentials and schema are applied.
+
+## 2026-07-13 - Move application code into frontend/
+
+Decision:
+Keep the Next.js application, tests, and frontend tooling in `frontend/` at the repository root.
+
+Reason:
+Separates the web application from repo-level docs, loop-engineering plans, and database migrations.
+
+Alternatives considered:
+Keeping a flat repository layout.
+
+Impact:
+Run npm and Make commands from the repo root via `make ...`, or directly inside `frontend/`. Vercel deployments should use `frontend` as the root directory.

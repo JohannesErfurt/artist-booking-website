@@ -68,4 +68,3 @@ Allowed statuses:
 - Turnstile secret keys must only be used server-side.
 - User-provided text must not be rendered as unsafe HTML.
 - Personal data should not be logged unless strictly necessary for debugging.
-

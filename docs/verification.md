@@ -13,49 +13,67 @@ If implementation requires a different runtime or package manager, update this f
 
 ## Expected Commands
 
+Run these from the repository root via Make:
+
+```bash
+make install
+make dev
+make test
+```
+
+Or run npm commands inside `frontend/`:
+
 Install dependencies:
 
 ```bash
-npm install
+cd frontend && npm install
 ```
 
 Run development server:
 
 ```bash
-npm run dev
+cd frontend && npm run dev
 ```
 
 Run lint:
 
 ```bash
-npm run lint
+cd frontend && npm run lint
 ```
 
 Run typecheck:
 
 ```bash
-npm run typecheck
+cd frontend && npm run typecheck
 ```
 
 Run tests:
 
 ```bash
-npm run test
+cd frontend && npm run test
 ```
 
 Run production build:
 
 ```bash
-npm run build
+cd frontend && npm run build
 ```
+
+Run all automated checks and tests:
+
+```bash
+make test
+```
+
+`make test` runs lint, typecheck, format check, unit tests, and production build in sequence.
 
 Run formatting check:
 
 ```bash
-npm run format:check
+cd frontend && npm run format:check
 ```
 
-Expected environment variables are listed in `.env.example`:
+Expected environment variables are listed in `frontend/.env.example`:
 
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY`

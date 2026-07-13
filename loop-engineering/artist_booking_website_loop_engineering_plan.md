@@ -18,29 +18,29 @@ These tasks can be completed by a coding agent in the local repository, assuming
 
 ### Repository Files
 
-- [ ] Add `.gitignore`
-- [ ] Add `README.md`
-- [ ] Document local setup instructions
-- [ ] Document required environment variables with placeholder names only
-- [ ] Add `.env.example`
+- [x] Add `.gitignore`
+- [x] Add `README.md`
+- [x] Document local setup instructions
+- [x] Document required environment variables with placeholder names only
+- [x] Add `.env.example`
 
 ### Next.js Application
 
-- [ ] Create Next.js application using App Router
-- [ ] Enable TypeScript
-- [ ] Enable Tailwind CSS
-- [ ] Configure absolute imports
-- [ ] Configure environment variable loading
-- [ ] Add a basic project folder structure
+- [x] Create Next.js application using App Router
+- [x] Enable TypeScript
+- [x] Enable Tailwind CSS
+- [x] Configure absolute imports
+- [x] Configure environment variable loading
+- [x] Add a basic project folder structure
 
 ### Code Quality
 
-- [ ] Configure ESLint
-- [ ] Configure Prettier
-- [ ] Add lint script
-- [ ] Add format script
-- [ ] Add build script
-- [ ] Verify the app builds locally
+- [x] Configure ESLint
+- [x] Configure Prettier
+- [x] Add lint script
+- [x] Add format script
+- [x] Add build script
+- [x] Verify the app builds locally
 
 ---
 
@@ -48,24 +48,24 @@ These tasks can be completed by a coding agent in the local repository, assuming
 
 ### Design System
 
-- [ ] Define color palette
-- [ ] Define typography
-- [ ] Define spacing system
-- [ ] Define responsive breakpoints
-- [ ] Define button styles
-- [ ] Define form styles
-- [ ] Ensure the design is mobile-friendly
+- [x] Define color palette
+- [x] Define typography
+- [x] Define spacing system
+- [x] Define responsive breakpoints
+- [x] Define button styles
+- [x] Define form styles
+- [x] Ensure the design is mobile-friendly
 
 ### Shared Components
 
-- [ ] Create Navbar component
-- [ ] Create Footer component
-- [ ] Create Hero component
-- [ ] Create Section component
-- [ ] Create Button component
-- [ ] Create Card component
-- [ ] Create form field components
-- [ ] Create page layout wrapper
+- [x] Create Navbar component
+- [x] Create Footer component
+- [x] Create Hero component
+- [x] Create Section component
+- [x] Create Button component
+- [x] Create Card component
+- [x] Create form field components
+- [x] Create page layout wrapper
 
 ---
 
@@ -75,39 +75,39 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Home Page
 
-- [ ] Create hero section
-- [ ] Add placeholder artist headline
-- [ ] Add placeholder artist introduction
-- [ ] Add booking CTA button
-- [ ] Add featured image layout
-- [ ] Add testimonial section
-- [ ] Add contact CTA
+- [x] Create hero section
+- [x] Add placeholder artist headline
+- [x] Add placeholder artist introduction
+- [x] Add booking CTA button
+- [x] Add featured image layout
+- [x] Add testimonial section
+- [x] Add contact CTA
 
 ### About Page
 
-- [ ] Add placeholder artist biography
-- [ ] Add placeholder experience and references
-- [ ] Add placeholder achievements
+- [x] Add placeholder artist biography
+- [x] Add placeholder experience and references
+- [x] Add placeholder achievements
 
 ### Gallery Page
 
-- [ ] Create image gallery layout
-- [ ] Use Next.js Image
-- [ ] Add placeholder image data structure
-- [ ] Add lightbox functionality
-- [ ] Ensure gallery works on mobile
+- [x] Create image gallery layout
+- [x] Use Next.js Image
+- [x] Add placeholder image data structure
+- [x] Add lightbox functionality
+- [x] Ensure gallery works on mobile
 
 ### Videos Page
 
-- [ ] Create responsive video layout
-- [ ] Add placeholder YouTube embed data structure
-- [ ] Embed YouTube videos from configurable video IDs
+- [x] Create responsive video layout
+- [x] Add placeholder YouTube embed data structure
+- [x] Embed YouTube videos from configurable video IDs
 
 ### Contact Page
 
-- [ ] Add contact information section with placeholders
-- [ ] Add booking request form
-- [ ] Add clear success and error states
+- [x] Add contact information section with placeholders
+- [x] Add booking request form
+- [x] Add clear success and error states
 
 ---
 
@@ -115,36 +115,36 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Booking Form
 
-- [ ] Add name field
-- [ ] Add email field
-- [ ] Add phone number field
-- [ ] Add event date field
-- [ ] Add event location field
-- [ ] Add event type field
-- [ ] Add number of guests field
-- [ ] Add message field
-- [ ] Add accessible labels and validation messages
-- [ ] Add loading state during submission
-- [ ] Add success state after submission
-- [ ] Add error state after failed submission
+- [x] Add name field
+- [x] Add email field
+- [x] Add phone number field
+- [x] Add event date field
+- [x] Add event location field
+- [x] Add event type field
+- [x] Add number of guests field
+- [x] Add message field
+- [x] Add accessible labels and validation messages
+- [x] Add loading state during submission
+- [x] Add success state after submission
+- [x] Add error state after failed submission
 
 ### Validation
 
-- [ ] Add Zod validation schema
-- [ ] Validate user input client-side
-- [ ] Validate user input server-side
-- [ ] Sanitize input before storage or email
-- [ ] Return structured API errors
+- [x] Add Zod validation schema
+- [x] Validate user input client-side
+- [x] Validate user input server-side
+- [x] Sanitize input before storage or email
+- [x] Return structured API errors
 
 ### Submission
 
-- [ ] Create booking request API endpoint
-- [ ] Add local development fallback for booking storage
-- [ ] Add Supabase integration behind environment variables
-- [ ] Add email notification integration behind environment variables
-- [ ] Handle database failures gracefully
-- [ ] Handle email failures gracefully
-- [ ] Avoid exposing secrets to the client
+- [x] Create booking request API endpoint
+- [x] Add local development fallback for booking storage
+- [x] Add Supabase integration behind environment variables
+- [x] Add email notification integration behind environment variables
+- [x] Handle database failures gracefully
+- [x] Handle email failures gracefully
+- [x] Avoid exposing secrets to the client
 
 ---
 
@@ -152,27 +152,27 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Schema
 
-- [ ] Create SQL schema or migration for `booking_requests`
-- [ ] Include `id`
-- [ ] Include `created_at`
-- [ ] Include `name`
-- [ ] Include `email`
-- [ ] Include `phone`
-- [ ] Include `event_date`
-- [ ] Include `event_location`
-- [ ] Include `event_type`
-- [ ] Include `guest_count`
-- [ ] Include `message`
-- [ ] Include `status`
-- [ ] Restrict `status` to `new`, `contacted`, `accepted`, and `declined`
+- [x] Create SQL schema or migration for `booking_requests`
+- [x] Include `id`
+- [x] Include `created_at`
+- [x] Include `name`
+- [x] Include `email`
+- [x] Include `phone`
+- [x] Include `event_date`
+- [x] Include `event_location`
+- [x] Include `event_type`
+- [x] Include `guest_count`
+- [x] Include `message`
+- [x] Include `status`
+- [x] Restrict `status` to `new`, `contacted`, `accepted`, and `declined`
 
 ### Supabase Client Code
 
-- [ ] Add Supabase server client setup
-- [ ] Read Supabase URL from environment variables
-- [ ] Read Supabase service role key from environment variables
-- [ ] Add booking request insert function
-- [ ] Add error handling around inserts
+- [x] Add Supabase server client setup
+- [x] Read Supabase URL from environment variables
+- [x] Read Supabase service role key from environment variables
+- [x] Add booking request insert function
+- [x] Add error handling around inserts
 
 ---
 
@@ -180,18 +180,18 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Email Template
 
-- [ ] Create booking notification email template
-- [ ] Include booking requester details
-- [ ] Include event details
-- [ ] Include message content
-- [ ] Use plain text fallback
+- [x] Create booking notification email template
+- [x] Include booking requester details
+- [x] Include event details
+- [x] Include message content
+- [x] Use plain text fallback
 
 ### Resend Client Code
 
-- [ ] Add Resend integration behind environment variables
-- [ ] Send notification after booking request submission
-- [ ] Handle email API errors
-- [ ] Ensure booking request is not lost if email fails
+- [x] Add Resend integration behind environment variables
+- [x] Send notification after booking request submission
+- [x] Handle email API errors
+- [x] Ensure booking request is not lost if email fails
 
 ---
 
@@ -199,23 +199,23 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Input Protection
 
-- [ ] Validate all booking form inputs on the server
-- [ ] Sanitize stored text fields
-- [ ] Avoid unsafe HTML rendering
-- [ ] Avoid logging sensitive personal data unnecessarily
+- [x] Validate all booking form inputs on the server
+- [x] Sanitize stored text fields
+- [x] Avoid unsafe HTML rendering
+- [x] Avoid logging sensitive personal data unnecessarily
 
 ### Spam Protection
 
-- [ ] Add Cloudflare Turnstile widget placeholder
-- [ ] Add server-side Turnstile verification function
-- [ ] Make Turnstile optional in local development
-- [ ] Fail safely when Turnstile verification fails in production
+- [x] Add Cloudflare Turnstile widget placeholder
+- [x] Add server-side Turnstile verification function
+- [x] Make Turnstile optional in local development
+- [x] Fail safely when Turnstile verification fails in production
 
 ### Secrets
 
-- [ ] Ensure secrets are only referenced from environment variables
-- [ ] Verify secrets are not committed
-- [ ] Add secret names to `.env.example` without real values
+- [x] Ensure secrets are only referenced from environment variables
+- [x] Verify secrets are not committed
+- [x] Add secret names to `.env.example` without real values
 
 ---
 
@@ -223,17 +223,17 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Images
 
-- [ ] Use Next.js Image for local and remote images where appropriate
-- [ ] Add image size guidance to README
-- [ ] Enable lazy loading where appropriate
-- [ ] Avoid layout shift for image areas
+- [x] Use Next.js Image for local and remote images where appropriate
+- [x] Add image size guidance to README
+- [x] Enable lazy loading where appropriate
+- [x] Avoid layout shift for image areas
 
 ### Frontend
 
-- [ ] Optimize fonts
-- [ ] Remove unnecessary dependencies
-- [ ] Check production build output
-- [ ] Keep client components scoped to interactive UI only
+- [x] Optimize fonts
+- [x] Remove unnecessary dependencies
+- [x] Check production build output
+- [x] Keep client components scoped to interactive UI only
 
 ---
 
@@ -241,22 +241,22 @@ The agent can build these pages with placeholder content until the human provide
 
 ### Metadata
 
-- [ ] Add default site metadata
-- [ ] Add page titles
-- [ ] Add meta descriptions
-- [ ] Add Open Graph metadata
-- [ ] Add placeholder Open Graph image configuration
+- [x] Add default site metadata
+- [x] Add page titles
+- [x] Add meta descriptions
+- [x] Add Open Graph metadata
+- [x] Add placeholder Open Graph image configuration
 
 ### Search Engine Setup
 
-- [ ] Create `sitemap.xml`
-- [ ] Create `robots.txt`
+- [x] Create `sitemap.xml`
+- [x] Create `robots.txt`
 
 ### Structured Data
 
-- [ ] Add Person schema using placeholder artist data
-- [ ] Add Musician schema using placeholder artist data
-- [ ] Make structured data easy to update when final content is provided
+- [x] Add Person schema using placeholder artist data
+- [x] Add Musician schema using placeholder artist data
+- [x] Make structured data easy to update when final content is provided
 
 ---
 
@@ -264,25 +264,25 @@ The agent can build these pages with placeholder content until the human provide
 
 The agent can create placeholder pages and wire them into the site. Final legal content requires human review.
 
-- [ ] Add Impressum page route
-- [ ] Add Privacy Policy page route
-- [ ] Link legal pages from the footer
-- [ ] Add clear placeholders for required legal details
-- [ ] Document that legal text requires human review
+- [x] Add Impressum page route
+- [x] Add Privacy Policy page route
+- [x] Link legal pages from the footer
+- [x] Add clear placeholders for required legal details
+- [x] Document that legal text requires human review
 
 ---
 
 ## 11. Local Verification
 
-- [ ] Run linter
-- [ ] Run formatter or formatting check
-- [ ] Run production build
-- [ ] Test booking form validation manually
-- [ ] Test booking API with valid payload
-- [ ] Test booking API with invalid payload
-- [ ] Test mobile layout
-- [ ] Test navigation between all public pages
-- [ ] Update this checklist with completed items
+- [x] Run linter
+- [x] Run formatter or formatting check
+- [x] Run production build
+- [x] Test booking form validation manually
+- [x] Test booking API with valid payload
+- [x] Test booking API with invalid payload
+- [x] Test mobile layout
+- [x] Test navigation between all public pages
+- [x] Update this checklist with completed items
 
 ---
 
@@ -369,15 +369,15 @@ These items require the human owner to provide content, credentials, account acc
 
 The coding agent should follow these rules while working through the MVP.
 
-- [ ] Work from top to bottom unless a dependency requires reordering
-- [ ] Complete local/code tasks without waiting for human input when reasonable placeholders can be used
-- [ ] Mark external account, secret, content, legal, and deployment tasks as blocked when human input is missing
-- [ ] Keep placeholders clearly labeled
-- [ ] Never invent real artist facts, testimonials, legal details, or credentials
-- [ ] Never commit secrets
-- [ ] Run lint/build checks after major implementation phases
-- [ ] Update checklist status as tasks are completed or blocked
-- [ ] Keep a short implementation note for any important assumption
+- [x] Work from top to bottom unless a dependency requires reordering
+- [x] Complete local/code tasks without waiting for human input when reasonable placeholders can be used
+- [x] Mark external account, secret, content, legal, and deployment tasks as blocked when human input is missing
+- [x] Keep placeholders clearly labeled
+- [x] Never invent real artist facts, testimonials, legal details, or credentials
+- [x] Never commit secrets
+- [x] Run lint/build checks after major implementation phases
+- [x] Update checklist status as tasks are completed or blocked
+- [x] Keep a short implementation note for any important assumption
 
 ---
 
@@ -385,15 +385,15 @@ The coding agent should follow these rules while working through the MVP.
 
 ## Local MVP Complete
 
-- [ ] App runs locally
-- [ ] All public pages exist
-- [ ] Booking form validates input
-- [ ] Booking API endpoint exists
-- [ ] Database and email integrations are implemented behind environment variables
-- [ ] Placeholder artist content is clearly isolated
-- [ ] SEO basics are implemented
-- [ ] Legal placeholder pages exist
-- [ ] Lint and build pass
+- [x] App runs locally
+- [x] All public pages exist
+- [x] Booking form validates input
+- [x] Booking API endpoint exists
+- [x] Database and email integrations are implemented behind environment variables
+- [x] Placeholder artist content is clearly isolated
+- [x] SEO basics are implemented
+- [x] Legal placeholder pages exist
+- [x] Lint and build pass
 
 ## Integration MVP Complete
 

@@ -28,4 +28,3 @@ Use these gates before marking work as complete.
 - [ ] Legal pages have human approval.
 - [ ] Secrets are stored in approved secret stores and not committed.
 - [ ] Production smoke test has passed.
-

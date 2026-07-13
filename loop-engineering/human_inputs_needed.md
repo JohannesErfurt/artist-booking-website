@@ -65,4 +65,3 @@ This file tracks everything the coding agent should not invent or cannot complet
 - [ ] Vercel production environment variables
 - [ ] Production deployment approval
 - [ ] Production smoke-test approval
-

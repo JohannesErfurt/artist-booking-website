@@ -49,6 +49,7 @@ If a verification command cannot run because the project is not initialized yet 
 
 ## Repo Conventions
 
+- Application code lives in `frontend/`.
 - Use Next.js App Router conventions.
 - Use TypeScript for application code.
 - Use Tailwind CSS for styling.
@@ -56,10 +57,10 @@ If a verification command cannot run because the project is not initialized yet 
 - Target Node.js `20.x` LTS or newer unless implementation constraints require otherwise.
 - Prefer server components for static content.
 - Use client components only for interactive UI such as forms, menus, lightboxes, and Turnstile widgets.
-- Keep reusable UI in `components`.
-- Keep server-only utilities in a clearly server-only location such as `lib/server`.
+- Keep reusable UI in `frontend/components`.
+- Keep server-only utilities in a clearly server-only location such as `frontend/lib/server`.
 - Keep shared validation schemas centralized.
-- Keep placeholder artist/site content centralized so final content can be replaced later.
+- Keep placeholder artist/site content centralized in `frontend/content` so final content can be replaced later.
 - Keep environment variable access centralized once implementation begins.
 
 ## Quality Gates

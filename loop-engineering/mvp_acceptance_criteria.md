@@ -165,4 +165,3 @@ Verification:
 - Vercel deployment succeeds.
 - Production smoke test passes.
 - Human confirms final domain and legal pages.
-

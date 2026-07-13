@@ -1,0 +1,53 @@
+# dependencies
+/node_modules
+/frontend/node_modules
+
+# testing
+/coverage
+/frontend/coverage
+
+# next.js
+/.next/
+/frontend/.next/
+/out/
+/frontend/out/
+
+# production
+/build
+/frontend/build
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env*.local
+/frontend/.env
+/frontend/.env*.local
+
+# vercel
+.vercel
+/frontend/.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+
+# local booking fallback storage
+/data/
+/frontend/data/

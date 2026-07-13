@@ -72,4 +72,3 @@ Use this checklist for human-readable verification of the MVP. The agent should 
 - [ ] Turnstile is active.
 - [ ] Sitemap is reachable.
 - [ ] Robots file is reachable.
-
