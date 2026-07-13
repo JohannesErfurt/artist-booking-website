@@ -6,6 +6,8 @@ This file separates the MVP into work a coding agent can complete autonomously a
 
 The goal is to support loop engineering: the coding agent should keep completing verifiable tasks, update checklist status, and only stop when a human checkpoint is genuinely required.
 
+Each checklist item is verifiable through `mvp_checklist_acceptance_matrix.md`. A task is not done until its acceptance criteria are satisfied and its verification step has run or is recorded as blocked in `mvp_progress.md`.
+
 ---
 
 # Coding Agent Work
@@ -392,6 +394,17 @@ The coding agent should follow these rules while working through the MVP.
 - [ ] SEO basics are implemented
 - [ ] Legal placeholder pages exist
 - [ ] Lint and build pass
+
+## Integration MVP Complete
+
+- [ ] Supabase project exists and environment variables are configured
+- [ ] `booking_requests` schema has been applied and verified
+- [ ] Booking form stores valid requests in Supabase
+- [ ] Resend account and verified sender are configured
+- [ ] Artist receives booking notification emails from real submissions
+- [ ] Cloudflare Turnstile keys are configured
+- [ ] Turnstile verification rejects invalid production submissions
+- [ ] Integration verification results are recorded in `mvp_progress.md`
 
 ## Production MVP Complete
 

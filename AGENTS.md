@@ -7,6 +7,7 @@ This repository is intended to support loop engineering: a coding agent should b
 - `artist_booking_website_mvp_plan.md`: original MVP checklist.
 - `artist_booking_website_loop_engineering_plan.md`: split between autonomous agent work and human-input checkpoints.
 - `mvp_acceptance_criteria.md`: acceptance criteria for major MVP sections.
+- `mvp_checklist_acceptance_matrix.md`: per-checklist-item acceptance criteria and verification steps.
 - `mvp_progress.md`: live progress, blockers, assumptions, and verification log.
 - `human_inputs_needed.md`: content, credentials, legal, account, and deployment inputs required from the human owner.
 
@@ -45,6 +46,39 @@ Minimum expectations:
 
 If a verification command cannot run because the project is not initialized yet or dependencies are missing, record that in `mvp_progress.md`.
 
+## Repo Conventions
+
+- Use Next.js App Router conventions.
+- Use TypeScript for application code.
+- Use Tailwind CSS for styling.
+- Use npm unless a different package manager is intentionally introduced.
+- Target Node.js `20.x` LTS or newer unless implementation constraints require otherwise.
+- Prefer server components for static content.
+- Use client components only for interactive UI such as forms, menus, lightboxes, and Turnstile widgets.
+- Keep reusable UI in `components`.
+- Keep server-only utilities in a clearly server-only location such as `lib/server`.
+- Keep shared validation schemas centralized.
+- Keep placeholder artist/site content centralized so final content can be replaced later.
+- Keep environment variable access centralized once implementation begins.
+
+## Quality Gates
+
+Before marking a task or phase `DONE`:
+
+- Acceptance criteria in `mvp_acceptance_criteria.md` and `mvp_checklist_acceptance_matrix.md` are satisfied or blocked.
+- Required verification commands from `docs/verification.md` have run or have documented blockers.
+- Relevant manual QA from `docs/manual_qa.md` has been performed for UI changes.
+- `mvp_progress.md` has been updated with results, assumptions, and blockers.
+- No secrets, local env files, build output, dependency folders, or unrelated generated files are included.
+
+## Rollback and Safety Rules
+
+- Do not delete or overwrite user content unless the user explicitly asks.
+- Do not run destructive Git commands such as reset, clean, or checkout to discard changes unless explicitly requested.
+- If a change causes verification failure, prefer a small forward fix.
+- If a forward fix is not obvious, record the failure in `mvp_progress.md` and ask before broad rewrites.
+- Keep generated or experimental files easy to identify.
+
 ## Placeholder Policy
 
 Placeholders are allowed only when they are obvious and easy to replace later.
@@ -72,4 +106,3 @@ When commits are requested:
 - Use a concise message such as `Add booking form validation`.
 - Ensure the staged diff does not include secrets or unrelated generated files.
 - Mention any skipped verification in the commit summary or final response.
-
