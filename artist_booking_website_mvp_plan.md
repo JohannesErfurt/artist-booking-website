@@ -18,19 +18,19 @@ The MVP should be production-ready and optimized for getting real booking reques
 
 ## Repository
 
-- ☐ Create GitHub repository
-- ☐ Add `.gitignore`
-- ☐ Add `README.md`
-- ☐ Configure ESLint
-- ☐ Configure Prettier
+- [ ] Create GitHub repository
+- [ ] Add `.gitignore`
+- [ ] Add `README.md`
+- [ ] Configure ESLint
+- [ ] Configure Prettier
 
 ## Next.js Application
 
-- ☐ Create Next.js application using App Router
-- ☐ Enable TypeScript
-- ☐ Enable Tailwind CSS
-- ☐ Configure absolute imports
-- ☐ Configure environment variables
+- [ ] Create Next.js application using App Router
+- [ ] Enable TypeScript
+- [ ] Enable Tailwind CSS
+- [ ] Configure absolute imports
+- [ ] Configure environment variables
 
 ---
 
@@ -38,21 +38,21 @@ The MVP should be production-ready and optimized for getting real booking reques
 
 ## Design System
 
-- ☐ Define color palette
-- ☐ Define typography
-- ☐ Define spacing system
-- ☐ Define responsive breakpoints
-- ☐ Define button styles
-- ☐ Define form styles
+- [ ] Define color palette
+- [ ] Define typography
+- [ ] Define spacing system
+- [ ] Define responsive breakpoints
+- [ ] Define button styles
+- [ ] Define form styles
 
 ## Shared Components
 
-- ☐ Create Navbar component
-- ☐ Create Footer component
-- ☐ Create Hero component
-- ☐ Create Section component
-- ☐ Create Button component
-- ☐ Create Card component
+- [ ] Create Navbar component
+- [ ] Create Footer component
+- [ ] Create Hero component
+- [ ] Create Section component
+- [ ] Create Button component
+- [ ] Create Card component
 
 ---
 
@@ -60,35 +60,35 @@ The MVP should be production-ready and optimized for getting real booking reques
 
 ## Home Page
 
-- ☐ Create hero section
-- ☐ Add artist headline
-- ☐ Add artist introduction
-- ☐ Add booking CTA button
-- ☐ Add featured images
-- ☐ Add testimonials
-- ☐ Add contact CTA
+- [ ] Create hero section
+- [ ] Add artist headline
+- [ ] Add artist introduction
+- [ ] Add booking CTA button
+- [ ] Add featured images
+- [ ] Add testimonials
+- [ ] Add contact CTA
 
 ## About Page
 
-- ☐ Add artist biography
-- ☐ Add experience and references
-- ☐ Add achievements
+- [ ] Add artist biography
+- [ ] Add experience and references
+- [ ] Add achievements
 
 ## Gallery Page
 
-- ☐ Create image gallery
-- ☐ Optimize images with Next.js Image
-- ☐ Add lightbox functionality
+- [ ] Create image gallery
+- [ ] Optimize images with Next.js Image
+- [ ] Add lightbox functionality
 
 ## Videos Page
 
-- ☐ Embed YouTube videos
-- ☐ Create responsive video layout
+- [ ] Embed YouTube videos
+- [ ] Create responsive video layout
 
 ## Contact Page
 
-- ☐ Add contact information
-- ☐ Add booking request form
+- [ ] Add contact information
+- [ ] Add booking request form
 
 ---
 
@@ -98,27 +98,27 @@ The MVP should be production-ready and optimized for getting real booking reques
 
 Fields:
 
-- ☐ Name
-- ☐ Email
-- ☐ Phone number
-- ☐ Event date
-- ☐ Event location
-- ☐ Event type
-- ☐ Number of guests
-- ☐ Message
+- [ ] Name
+- [ ] Email
+- [ ] Phone number
+- [ ] Event date
+- [ ] Event location
+- [ ] Event type
+- [ ] Number of guests
+- [ ] Message
 
 ## Validation
 
-- ☐ Add Zod validation
-- ☐ Validate user input
-- ☐ Sanitize input
+- [ ] Add Zod validation
+- [ ] Validate user input
+- [ ] Sanitize input
 
 ## Submission
 
-- ☐ Create API endpoint
-- ☐ Store booking request
-- ☐ Send email notification
-- ☐ Handle errors gracefully
+- [ ] Create API endpoint
+- [ ] Store booking request
+- [ ] Send email notification
+- [ ] Handle errors gracefully
 
 ---
 
@@ -126,8 +126,8 @@ Fields:
 
 ## Supabase Setup
 
-- ☐ Create Supabase project
-- ☐ Configure environment variables
+- [ ] Create Supabase project
+- [ ] Configure environment variables
 
 ## Booking Database
 
@@ -162,15 +162,15 @@ Status:
 
 ## Resend Setup
 
-- ☐ Create Resend account
-- ☐ Configure API key
-- ☐ Verify domain
+- [ ] Create Resend account
+- [ ] Configure API key
+- [ ] Verify domain
 
 ## Booking Notification
 
-- ☐ Create email template
-- ☐ Send notification after booking request
-- ☐ Handle email failures
+- [ ] Create email template
+- [ ] Send notification after booking request
+- [ ] Handle email failures
 
 ---
 
@@ -178,18 +178,18 @@ Status:
 
 ## Input Protection
 
-- ☐ Validate all inputs
-- ☐ Prevent injection attacks
+- [ ] Validate all inputs
+- [ ] Prevent injection attacks
 
 ## Spam Protection
 
-- ☐ Add Cloudflare Turnstile
-- ☐ Verify Turnstile server-side
+- [ ] Add Cloudflare Turnstile
+- [ ] Verify Turnstile server-side
 
 ## Secrets
 
-- ☐ Store secrets in Vercel environment variables
-- ☐ Verify secrets are not committed
+- [ ] Store secrets in Vercel environment variables
+- [ ] Verify secrets are not committed
 
 ---
 
@@ -197,14 +197,14 @@ Status:
 
 ## Images
 
-- ☐ Optimize image sizes
-- ☐ Use WebP/AVIF where appropriate
-- ☐ Enable lazy loading
+- [ ] Optimize image sizes
+- [ ] Use WebP/AVIF where appropriate
+- [ ] Enable lazy loading
 
 ## Frontend
 
-- ☐ Optimize fonts
-- ☐ Remove unnecessary dependencies
+- [ ] Optimize fonts
+- [ ] Remove unnecessary dependencies
 
 ---
 
@@ -212,19 +212,19 @@ Status:
 
 ## Metadata
 
-- ☐ Add page titles
-- ☐ Add meta descriptions
-- ☐ Add Open Graph images
+- [ ] Add page titles
+- [ ] Add meta descriptions
+- [ ] Add Open Graph images
 
 ## Search Engine Setup
 
-- ☐ Create sitemap.xml
-- ☐ Create robots.txt
+- [ ] Create sitemap.xml
+- [ ] Create robots.txt
 
 ## Structured Data
 
-- ☐ Add Person schema
-- ☐ Add Musician schema
+- [ ] Add Person schema
+- [ ] Add Musician schema
 
 ---
 
@@ -232,9 +232,9 @@ Status:
 
 Germany / EU:
 
-- ☐ Add Impressum
-- ☐ Add Privacy Policy
-- ☐ Review GDPR requirements
+- [ ] Add Impressum
+- [ ] Add Privacy Policy
+- [ ] Review GDPR requirements
 
 ---
 
@@ -242,25 +242,25 @@ Germany / EU:
 
 ## Vercel
 
-- ☐ Deploy application
-- ☐ Configure environment variables
-- ☐ Connect GitHub repository
+- [ ] Deploy application
+- [ ] Configure environment variables
+- [ ] Connect GitHub repository
 
 ## Domain
 
-- ☐ Purchase domain
-- ☐ Configure DNS
-- ☐ Enable HTTPS
+- [ ] Purchase domain
+- [ ] Configure DNS
+- [ ] Enable HTTPS
 
 ---
 
 # MVP Definition of Done
 
-- ☐ Website publicly available
-- ☐ Custom domain working
-- ☐ Mobile-friendly
-- ☐ Booking form working
-- ☐ Artist receives booking notifications
-- ☐ Images and videos optimized
-- ☐ SEO basics implemented
-- ☐ GDPR pages available
+- [ ] Website publicly available
+- [ ] Custom domain working
+- [ ] Mobile-friendly
+- [ ] Booking form working
+- [ ] Artist receives booking notifications
+- [ ] Images and videos optimized
+- [ ] SEO basics implemented
+- [ ] GDPR pages available
