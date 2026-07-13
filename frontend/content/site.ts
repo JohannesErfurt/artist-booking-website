@@ -71,7 +71,7 @@ export const galleryImages = [
   },
   {
     id: "gallery-2",
-    src: "https://images.unsplash.com/photo-1511379938549-c1f69419868d?w=800&h=600&fit=crop",
+    src: "/images/placeholder-gallery-2.svg",
     alt: "TODO: replace with final alt text — placeholder studio photo",
     caption: "TODO: replace with final caption",
     width: 800,
@@ -79,7 +79,7 @@ export const galleryImages = [
   },
   {
     id: "gallery-3",
-    src: "https://images.unsplash.com/photo-1514320291840-755a9c963f3d?w=800&h=600&fit=crop",
+    src: "/images/placeholder-gallery-3.svg",
     alt: "TODO: replace with final alt text — placeholder stage photo",
     caption: "TODO: replace with final caption",
     width: 800,
