@@ -37,6 +37,7 @@ export function BookingForm() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const { turnstileEnabled } = getPublicEnv();
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [minDate, setMinDate] = useState<string>();
 
   // Set on the client only: the page is prerendered, so "today" at build
@@ -52,6 +53,12 @@ export function BookingForm() {
     setValues((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
     setFormError(null);
+  }
+
+  // Separate from updateField: a refreshed token must not wipe the error
+  // message of the attempt that triggered the refresh.
+  function setTurnstileToken(token: string | undefined) {
+    setValues((current) => ({ ...current, turnstileToken: token }));
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -97,6 +104,9 @@ export function BookingForm() {
       };
 
       if (!response.ok) {
+        // The token was used up by this attempt; ask for a new one.
+        setTurnstileToken(undefined);
+        setTurnstileResetKey((key) => key + 1);
         setErrors(payload.errors ?? {});
         setFormError(
           payload.message ?? "Senden fehlgeschlagen. Bitte versuche es erneut.",
@@ -241,8 +251,9 @@ export function BookingForm() {
       />
 
       <TurnstileWidget
-        onVerify={(token) => updateField("turnstileToken", token)}
-        onExpire={() => updateField("turnstileToken", undefined)}
+        onVerify={setTurnstileToken}
+        onExpire={() => setTurnstileToken(undefined)}
+        resetKey={turnstileResetKey}
       />
 
       {formError ? (

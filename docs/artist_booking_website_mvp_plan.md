@@ -171,7 +171,7 @@ Free Supabase projects are paused after about a week without activity.
 
 - [x] Create Resend account
 - [x] Configure API key
-- [ ] Verify domain
+- [x] Verify domain
 
 ## Booking Notification
 
@@ -190,8 +190,8 @@ Free Supabase projects are paused after about a week without activity.
 
 ## Spam Protection
 
-- [ ] Add Cloudflare Turnstile
-- [ ] Verify Turnstile server-side
+- [x] Add Cloudflare Turnstile
+- [x] Verify Turnstile server-side
 
 ## Secrets
 

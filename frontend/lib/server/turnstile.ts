@@ -13,7 +13,7 @@ export async function verifyTurnstileToken(
   if (!token) {
     return {
       success: false,
-      error: "Turnstile verification is required.",
+      error: "Bitte bestätige die Spam-Schutz-Prüfung.",
     };
   }
 
@@ -36,7 +36,8 @@ export async function verifyTurnstileToken(
   if (!response.ok) {
     return {
       success: false,
-      error: "Turnstile verification failed.",
+      error:
+        "Die Spam-Schutz-Prüfung ist fehlgeschlagen. Bitte versuche es erneut.",
     };
   }
 
@@ -45,7 +46,8 @@ export async function verifyTurnstileToken(
   if (!result.success) {
     return {
       success: false,
-      error: "Turnstile verification failed.",
+      error:
+        "Die Spam-Schutz-Prüfung ist fehlgeschlagen. Bitte versuche es erneut.",
     };
   }
 
