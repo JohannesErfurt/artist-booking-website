@@ -65,7 +65,7 @@ The MVP should be production-ready and optimized for getting real booking reques
 - [x] Add artist introduction
 - [x] Add booking CTA button
 - [x] Add featured images
-- [ ] Add testimonials
+- [x] Add testimonials
 - [x] Add contact CTA
 
 ## About Page
@@ -155,6 +155,13 @@ Status:
 - contacted
 - accepted
 - declined
+
+## Reliability on the Free Plan
+
+Free Supabase projects are paused after about a week without activity.
+
+- [ ] Keep the database awake with a daily scheduled job (e.g. Vercel Cron)
+- [ ] Still send the notification email when the database is unavailable
 
 ---
 

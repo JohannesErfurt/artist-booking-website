@@ -22,3 +22,11 @@ create index if not exists booking_requests_created_at_idx
 
 create index if not exists booking_requests_status_idx
   on public.booking_requests (status);
+
+-- Lock the table down: with row level security enabled and no policies,
+-- the public (anon) and logged-in (authenticated) API roles cannot read or
+-- write any row. The website's server uses the service role key, which
+-- bypasses row level security.
+alter table public.booking_requests enable row level security;
+
+revoke all on table public.booking_requests from anon, authenticated;

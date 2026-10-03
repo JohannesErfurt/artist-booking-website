@@ -201,6 +201,12 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 - After that test the HTML email was rebuilt as a complete document with padding, because the last line was cut off in the owner's mail client. The owner has not yet confirmed the fix with a new test email.
 - Still open: verifying an own sending domain in Resend (needs the domain) and production env vars.
 
+## Database Preparation (2026-10-03)
+
+- `supabase/migrations/001_booking_requests.sql` now enables row level security on `booking_requests` and revokes access from the `anon` and `authenticated` roles. Only the service role key used by the server can read or write.
+- The script has not been applied yet; the Supabase project is still to be created by the owner.
+- Two follow-up tasks were added to section 5 of the MVP plan (2026-10-03, `TODO`): a daily keep-alive job against Supabase's free-plan pausing, and sending the notification email even when the database is unavailable.
+
 ## Dependency Audit Notes
 
 Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moderate, 6 high). All require `npm audit fix --force` and were intentionally left:
