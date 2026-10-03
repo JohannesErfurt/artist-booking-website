@@ -7,7 +7,7 @@ This file is the live state tracker for loop engineering. The agent should updat
 - Overall status: `LOCAL_MVP_DONE`
 - Current phase: `11. Local Verification`
 - Current task: `Complete — awaiting human inputs for Integration MVP`
-- Last updated: `2026-07-13`
+- Last updated: `2026-10-03`
 - Repository layout: application code lives in `frontend/`
 
 ## Local MVP Definition of Done
@@ -149,6 +149,20 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-07-13 | `npm run dev`                       | Pass   | Dev server ready on port 3000            |
 | 2026-07-13 | POST `/api/booking` valid payload   | Pass   | `storage: local`, `emailSent: false`     |
 | 2026-07-13 | POST `/api/booking` invalid payload | Pass   | HTTP 400 with structured field errors    |
+| 2026-10-03 | `npm audit fix` (no `--force`)      | Pass   | 13 → 9 vulnerabilities; critical cleared; `next` 15.5.27, `sharp` 0.35.5; only `package-lock.json` changed |
+| 2026-10-03 | `npm run lint`                      | Pass   | After audit fix                          |
+| 2026-10-03 | `npm run typecheck`                 | Pass   | After audit fix                          |
+| 2026-10-03 | `npm run format:check`              | Pass   | After audit fix                          |
+| 2026-10-03 | `npm run test`                      | Pass   | 4 tests, vitest 3.2.7                    |
+| 2026-10-03 | `npm run build`                     | Pass   | 13 routes generated                      |
+
+## Dependency Audit Notes
+
+Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moderate, 6 high). All require `npm audit fix --force` and were intentionally left:
+
+- `postcss` 8.4.31 bundled inside `next` 15.x (high): build-time only; fix requires `next` 16.x (breaking). Revisit when upgrading to Next.js 16.
+- `braces` → `micromatch` → `fast-glob` → `eslint-config-next` (high): lint tooling only; forced fix would downgrade `eslint-config-next` to 14.x.
+- `vitest` / `@vitest/mocker` (moderate): test tooling only; fix requires vitest 5 (breaking).
 
 ## Manual QA Notes (Local)
 
