@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Caprasimo, Geist } from "next/font/google";
 import { siteConfig } from "@/content/site";
 import {
   getMusicianStructuredData,
@@ -10,6 +10,14 @@ import "@/styles/globals.css";
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
+  display: "swap",
+});
+
+// Rounded retro display face, close to the lettering on the flyer.
+const displayFont = Caprasimo({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display-face",
   display: "swap",
 });
 
@@ -30,10 +38,10 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "TODO: replace with final Open Graph image alt text",
+        alt: "Quetschen-Hannes lacht und spielt auf seinem roten Akkordeon",
       },
     ],
-    locale: "en_US",
+    locale: "de_DE",
     type: "website",
   },
   twitter: {
@@ -55,8 +63,10 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} font-sans`}>
+    // Font variables must sit on <html>: the theme tokens that reference
+    // them are resolved on :root.
+    <html lang="de" className={`${geistSans.variable} ${displayFont.variable}`}>
+      <body className="font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

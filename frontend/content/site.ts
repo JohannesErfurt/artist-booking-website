@@ -1,134 +1,147 @@
-import type { SiteConfig } from "./types";
+import type { Service, SiteConfig, Testimonial } from "./types";
 
 export const siteConfig: SiteConfig = {
-  name: "Artist Name",
-  headline: "TODO: replace with final artist headline",
+  name: "Quetschen-Hannes",
+  headline: "Deine Feier – mein Termin",
   shortIntro:
-    "TODO: replace with final short introduction. This placeholder describes an actor and musician available for live performances, events, and creative collaborations.",
+    "Quetschen-Hannes ist der Berliner Schauspieler Hannes Ducke – mit Akkordeon, Gesang und einer guten Portion Humor. Ob Geburtstag, Hochzeit oder Hoffest: Er bringt handgemachte Musik und gute Laune zu deiner Feier.",
   description:
-    "TODO: replace with final site description. Professional artist booking website for live performances and events.",
+    "Quetschen-Hannes – Akkordeon, Gesang und Humor für deine Feier. Live-Unterhaltung mit Hannes Ducke aus Berlin für Geburtstage, Hochzeiten, Firmenfeiern und Feste.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  contactEmail: "TODO: replace with final contact email",
-  contactPhone: "TODO: replace with final public phone number",
-  bookingCta: "Request a Booking",
-  ogImage: "/images/placeholder-og.svg",
+  contactEmail: "hannesducke@yahoo.de",
+  contactPhone: "0173 60 700 43",
+  bookingCta: "Jetzt anfragen",
+  ogImage: "/images/quetschen-hannes-og.jpg",
 };
 
+export const contactLinks = {
+  phone: `tel:${siteConfig.contactPhone.replace(/\s/g, "")}`,
+  email: `mailto:${siteConfig.contactEmail}`,
+};
+
+// Sources for the facts below: public actor profiles (schauspielervideos.de,
+// neuestheater-hannover.de, neidig.org), the event listing for "Ein alter Witz
+// geht in Pension" (stadtleben.de) and the artist's own flyer.
+// TODO: have the artist review and approve all texts before launch.
 export const artistBio = {
   fullBio:
-    "TODO: replace with final biography. This placeholder text will be replaced with the artist's real story, training, and artistic background.",
+    "Hinter dem Quetschen-Hannes steckt Hannes Ducke: 1959 in Dresden geboren, in Berlin zu Hause und seit Jahrzehnten auf der Bühne. Mit seinem Akkordeon – der „Quetsche“ –, seiner Stimme und viel Witz unterhält er sein Publikum dort, wo gefeiert wird. Neben dem Akkordeon spielt er Gitarre und Mundharmonika und singt Chansons sowie Berliner und jiddische Lieder.",
   experience:
-    "TODO: replace with final experience and references. Include theater credits, music projects, and notable collaborations once provided.",
+    "Hannes Ducke ist ausgebildeter Schauspieler: 1985 schloss er sein Schauspielstudium in Leipzig ab und war anschließend an den Theatern in Bautzen, Anklam und Schwedt engagiert. Seit 2000 arbeitet er freischaffend, unter anderem an der Komödie Kassel, am Schlosstheater Celle, an der Comödie Fürth und an der Komödie am Altstadtmarkt in Braunschweig. Diese Bühnenerfahrung bringt er in jeden Auftritt mit – als Musiker, Sänger und Unterhalter.",
   achievements:
-    "TODO: replace with final achievements. Awards, milestones, and highlights will be listed here after human review.",
+    "Als Quetschen-Hannes steht er seit vielen Jahren auf Kleinkunstbühnen und bei Festen, zum Beispiel mit dem humorvollen Kabarettprogramm „Ein alter Witz geht in Pension“ in Zilles Stubentheater in Berlin. Aus dem Fernsehen kennt man ihn aus Serien wie „Wolffs Revier“, „Lindenstraße“, „GZSZ“ und „Unter uns“.",
 };
 
-export const services = [
+export const services: Service[] = [
   {
-    id: "live-music",
-    title: "Live Music",
+    id: "private-feiern",
+    icon: "🎂",
+    title: "Private Feiern",
     description:
-      "TODO: replace with final service description for live musical performances.",
+      "Geburtstag, Hochzeit, Jubiläum oder Familienfest: Akkordeonmusik und Lieder zum Zuhören, Mitsingen und Schunkeln.",
   },
   {
-    id: "theater",
-    title: "Theater & Acting",
+    id: "feste",
+    icon: "🎪",
+    title: "Feste & Veranstaltungen",
     description:
-      "TODO: replace with final service description for acting and theater appearances.",
+      "Hoffest, Straßenfest, Vereins- oder Firmenfeier: Live-Musik, die ohne große Technik auskommt und nah am Publikum ist.",
   },
   {
-    id: "events",
-    title: "Events & Appearances",
+    id: "kabarett",
+    icon: "🎭",
+    title: "Kabarett mit Akkordeon",
     description:
-      "TODO: replace with final service description for corporate and private events.",
+      "Humorvolle Unterhaltung mit Liedern, Witzen und Geschichten – vom Schauspieler mit der Quetsche.",
   },
 ];
 
-export const testimonials = [
+export const bookingSteps = [
   {
-    id: "placeholder-1",
-    quote: "TODO: replace with a real testimonial once provided by the artist.",
-    attribution: "Placeholder Client",
-    role: "TODO: replace with client role or event",
+    id: "anfragen",
+    title: "Anfragen",
+    description:
+      "Schreib mir über das Formular oder ruf an: Wann, wo und was wird gefeiert?",
   },
   {
-    id: "placeholder-2",
+    id: "absprechen",
+    title: "Absprechen",
+    description:
+      "Ich melde mich bei dir und wir klären gemeinsam Ablauf, Dauer und Musikwünsche.",
+  },
+  {
+    id: "feiern",
+    title: "Feiern",
+    description:
+      "Ich komme mit der Quetsche vorbei – und du kannst dich um deine Gäste kümmern.",
+  },
+];
+
+// TODO: PLACEHOLDER – invented example text to preview the layout only.
+// Replace with real, approved quotes (or empty the list) before launch.
+export const testimonials: Testimonial[] = [
+  {
+    id: "placeholder-1",
     quote:
-      "TODO: replace with a second testimonial. Placeholders are clearly labeled until final content is approved.",
-    attribution: "Placeholder Organizer",
-    role: "TODO: replace with event type",
+      "Hannes hat unsere Feier mit seinem Akkordeon zu etwas ganz Besonderem gemacht. Alle haben mitgesungen und gelacht – genau so hatten wir es uns gewünscht!",
+    attribution: "Beispiel-Kundin (Platzhalter)",
+    role: "Beispiel: 60. Geburtstag",
   },
 ];
 
 export const galleryImages = [
   {
-    id: "gallery-1",
-    src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
-    alt: "TODO: replace with final alt text — placeholder performance photo",
-    caption: "TODO: replace with final caption",
-    width: 800,
-    height: 600,
+    id: "quetschen-hannes",
+    src: "/images/quetschen-hannes.jpg",
+    alt: "Quetschen-Hannes sitzt lachend mit seinem rot-schwarzen Akkordeon auf einem Stuhl",
+    caption: "Quetschen-Hannes mit seiner Quetsche",
+    width: 1168,
+    height: 1150,
   },
   {
-    id: "gallery-2",
-    src: "/images/placeholder-gallery-2.svg",
-    alt: "TODO: replace with final alt text — placeholder studio photo",
-    caption: "TODO: replace with final caption",
-    width: 800,
-    height: 600,
-  },
-  {
-    id: "gallery-3",
-    src: "/images/placeholder-gallery-3.svg",
-    alt: "TODO: replace with final alt text — placeholder stage photo",
-    caption: "TODO: replace with final caption",
-    width: 800,
-    height: 600,
-  },
-  {
-    id: "gallery-4",
-    src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop",
-    alt: "TODO: replace with final alt text — placeholder audience photo",
-    caption: "TODO: replace with final caption",
-    width: 800,
-    height: 600,
+    id: "quetschen-hannes-flyer",
+    src: "/images/quetschen-hannes-flyer.jpg",
+    alt: "Roter Flyer von Quetschen-Hannes mit dem Motto „Deine Feier – mein Termin“",
+    caption: "Der Flyer: „Deine Feier – mein Termin“",
+    width: 1200,
+    height: 1646,
   },
 ];
 
 export const videoEmbeds = [
   {
-    id: "video-1",
-    title: "TODO: replace with final video title",
-    youtubeId: "dQw4w9WgXcQ",
-    description:
-      "TODO: replace with final video description. YouTube ID is a placeholder until real URLs are provided.",
+    id: "quetschen-hannes",
+    title: "Quetschen-Hannes",
+    youtubeId: "-N4YfuetieY",
+    description: "Quetschen-Hannes in Aktion – Video vom eigenen Kanal.",
   },
   {
-    id: "video-2",
-    title: "TODO: replace with second video title",
-    youtubeId: "9bZkp7q19f0",
-    description: "TODO: replace with final video description.",
+    id: "apres-church-2018",
+    title: "Après Church mit Quetschen-Hannes",
+    youtubeId: "Nzw2xUSu64c",
+    description:
+      "Live-Auftritt am 22. Juli 2018, aufgenommen von „Wir lieben Köpenick“.",
   },
 ];
 
 export const navigationLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/gallery", label: "Gallery" },
+  { href: "/", label: "Start" },
+  { href: "/about", label: "Über Hannes" },
+  { href: "/gallery", label: "Galerie" },
   { href: "/videos", label: "Videos" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Kontakt" },
 ];
 
 export const legalLinks = [
   { href: "/impressum", label: "Impressum" },
-  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/privacy", label: "Datenschutz" },
 ];
 
 export const eventTypes = [
-  "Concert",
-  "Theater Performance",
-  "Corporate Event",
-  "Private Event",
-  "Festival",
-  "Other",
+  "Geburtstag",
+  "Hochzeit",
+  "Familienfeier",
+  "Firmenfeier",
+  "Straßen- oder Vereinsfest",
+  "Sonstiges",
 ] as const;

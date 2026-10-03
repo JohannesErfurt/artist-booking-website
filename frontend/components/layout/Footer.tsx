@@ -1,37 +1,67 @@
 import Link from "next/link";
-import { legalLinks, siteConfig } from "@/content/site";
+import {
+  contactLinks,
+  legalLinks,
+  navigationLinks,
+  siteConfig,
+} from "@/content/site";
+
+const linkClasses =
+  "text-sm text-white/80 hover:text-white focus-visible:outline-white";
 
 export function Footer() {
   return (
-    <footer className="border-border bg-surface-muted border-t">
-      <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <p className="text-lg font-semibold">{siteConfig.name}</p>
-          <p className="text-muted mt-3 text-sm">
-            TODO: replace with final footer summary once artist content is
-            provided.
+    <footer className="bg-foreground text-white">
+      <div className="container-page grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="sm:col-span-2 lg:col-span-1">
+          <p className="font-display text-2xl">{siteConfig.name}</p>
+          <p className="mt-3 text-sm leading-6 text-white/80">
+            Akkordeon, Gesang und Humor für deine Feier – live mit Hannes Ducke
+            aus Berlin.
           </p>
         </div>
 
         <div>
-          <p className="text-foreground text-sm font-semibold tracking-wide uppercase">
-            Contact
+          <p className="text-sm font-semibold tracking-wide uppercase">
+            Seiten
           </p>
-          <p className="text-muted mt-3 text-sm">{siteConfig.contactEmail}</p>
-          <p className="text-muted mt-1 text-sm">{siteConfig.contactPhone}</p>
+          <ul className="mt-3 space-y-2">
+            {navigationLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className={linkClasses}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div>
-          <p className="text-foreground text-sm font-semibold tracking-wide uppercase">
-            Legal
+          <p className="text-sm font-semibold tracking-wide uppercase">
+            Kontakt
+          </p>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a href={contactLinks.phone} className={linkClasses}>
+                {siteConfig.contactPhone}
+              </a>
+            </li>
+            <li>
+              <a href={contactLinks.email} className={linkClasses}>
+                {siteConfig.contactEmail}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-sm font-semibold tracking-wide uppercase">
+            Rechtliches
           </p>
           <ul className="mt-3 space-y-2">
             {legalLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-muted hover:text-foreground text-sm"
-                >
+                <Link href={link.href} className={linkClasses}>
                   {link.label}
                 </Link>
               </li>
@@ -40,10 +70,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-border border-t">
-        <div className="container-page text-muted py-4 text-sm">
-          © {new Date().getFullYear()} {siteConfig.name}. Placeholder content —
-          final legal and artist details require human review.
+      <div className="border-t border-white/15">
+        <div className="container-page py-4 text-sm text-white/70">
+          © {new Date().getFullYear()} {siteConfig.name}
         </div>
       </div>
     </footer>

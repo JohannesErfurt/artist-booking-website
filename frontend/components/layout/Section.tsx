@@ -22,11 +22,11 @@ export function Section({
       <div className="container-page">
         <div className="max-w-2xl">
           {eyebrow ? (
-            <p className="text-brand-600 text-sm font-semibold tracking-wide uppercase">
+            <p className="text-brand-700 text-sm font-semibold tracking-widest uppercase">
               {eyebrow}
             </p>
           ) : null}
-          <h2 className="mt-2 text-3xl font-semibold sm:text-4xl">{title}</h2>
+          <h2 className="mt-2 text-4xl text-balance sm:text-5xl">{title}</h2>
           {description ? (
             <p className="text-muted mt-4 text-lg">{description}</p>
           ) : null}

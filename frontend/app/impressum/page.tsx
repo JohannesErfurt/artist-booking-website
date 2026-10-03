@@ -1,47 +1,72 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section } from "@/components/layout/Section";
-import { Card } from "@/components/ui/Card";
+import { LegalText } from "@/components/legal/LegalText";
+import { LegalValue } from "@/components/legal/LegalValue";
+import { legalInfo } from "@/content/legal";
+import { contactLinks, siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Impressum",
-  description: "Legal notice placeholder for the artist booking website.",
-  robots: {
-    index: true,
-    follow: true,
-  },
+  description: `Impressum und Anbieterkennzeichnung von ${siteConfig.name}.`,
 };
+
+function Address() {
+  return (
+    <p>
+      {legalInfo.responsibleName}
+      <br />
+      {legalInfo.stageName}
+      <br />
+      <LegalValue value={legalInfo.street} />
+      <br />
+      <LegalValue value={legalInfo.postalCodeAndCity} />
+      <br />
+      {legalInfo.country}
+    </p>
+  );
+}
 
 export default function ImpressumPage() {
   return (
     <PageLayout>
-      <Section
-        eyebrow="Legal"
-        title="Impressum"
-        description="Placeholder legal notice. Final Impressum text requires human legal review before production launch."
-      >
-        <Card className="text-muted space-y-4 text-sm leading-7">
+      <Section eyebrow="Rechtliches" title="Impressum">
+        <LegalText>
+          <h3>Angaben gemäß § 5 DDG</h3>
+          <Address />
+
+          <h3>Kontakt</h3>
           <p>
-            <strong className="text-foreground">TODO:</strong> Replace with
-            final legal business name.
+            Telefon: <a href={contactLinks.phone}>{siteConfig.contactPhone}</a>
+            <br />
+            E-Mail: <a href={contactLinks.email}>{siteConfig.contactEmail}</a>
           </p>
+
+          {legalInfo.vatId ? (
+            <>
+              <h3>Umsatzsteuer-ID</h3>
+              <p>
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a
+                Umsatzsteuergesetz: <LegalValue value={legalInfo.vatId} />
+              </p>
+            </>
+          ) : null}
+
+          <h3>Verbraucherstreitbeilegung</h3>
           <p>
-            <strong className="text-foreground">TODO:</strong> Replace with
-            responsible person for Impressum.
+            Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+            vor einer Verbraucherschlichtungsstelle teilzunehmen.
           </p>
+
+          <h3>Haftung für Links</h3>
           <p>
-            <strong className="text-foreground">TODO:</strong> Replace with
-            legal address.
+            Diese Website enthält Links zu externen Websites Dritter, auf deren
+            Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten
+            Seiten ist stets der jeweilige Anbieter verantwortlich. Sollten mir
+            Rechtsverletzungen bekannt werden, entferne ich die betreffenden
+            Links umgehend.
           </p>
-          <p>
-            <strong className="text-foreground">TODO:</strong> Replace with VAT
-            ID or business registration details, if applicable.
-          </p>
-          <p>
-            This page is a clearly labeled placeholder and must be reviewed and
-            approved by the site owner before publication.
-          </p>
-        </Card>
+        </LegalText>
       </Section>
     </PageLayout>
   );

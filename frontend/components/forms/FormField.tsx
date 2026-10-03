@@ -25,7 +25,7 @@ export function TextField({
       </label>
       <input
         id={id}
-        className={`focus:border-brand-500 focus:ring-brand-100 w-full rounded-lg border bg-white px-3 py-2.5 text-sm transition outline-none focus:ring-2 ${
+        className={`focus:border-brand-500 focus:ring-brand-100 w-full rounded-lg border bg-white px-3 py-3 text-base transition outline-none focus:ring-2 ${
           error ? "border-danger" : "border-border"
         }`}
         aria-invalid={Boolean(error)}
@@ -62,7 +62,7 @@ export function SelectField({
       </label>
       <select
         id={id}
-        className={`focus:border-brand-500 focus:ring-brand-100 w-full rounded-lg border bg-white px-3 py-2.5 text-sm transition outline-none focus:ring-2 ${
+        className={`focus:border-brand-500 focus:ring-brand-100 w-full rounded-lg border bg-white px-3 py-3 text-base transition outline-none focus:ring-2 ${
           error ? "border-danger" : "border-border"
         }`}
         aria-invalid={Boolean(error)}
@@ -93,7 +93,7 @@ export function TextAreaField({
       </label>
       <textarea
         id={id}
-        className={`focus:border-brand-500 focus:ring-brand-100 min-h-32 w-full rounded-lg border bg-white px-3 py-2.5 text-sm transition outline-none focus:ring-2 ${
+        className={`focus:border-brand-500 focus:ring-brand-100 min-h-32 w-full rounded-lg border bg-white px-3 py-3 text-base transition outline-none focus:ring-2 ${
           error ? "border-danger" : "border-border"
         }`}
         aria-invalid={Boolean(error)}

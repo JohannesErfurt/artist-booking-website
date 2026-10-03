@@ -30,13 +30,13 @@ This file is the live state tracker for loop engineering. The agent should updat
 
 ## Integration MVP Definition of Done
 
-- [ ] Supabase project exists and required env vars are configured locally or in the target environment
-- [ ] `booking_requests` schema has been applied and verified
-- [ ] Booking API stores valid requests in Supabase
-- [ ] Resend account and verified sender are configured
-- [ ] Booking notification emails are received by the configured recipient
-- [ ] Cloudflare Turnstile keys are configured
-- [ ] Turnstile verification rejects invalid production submissions
+- [x] Supabase project exists and required env vars are configured locally or in the target environment (local only so far)
+- [x] `booking_requests` schema has been applied and verified
+- [x] Booking API stores valid requests in Supabase
+- [x] Resend account and verified sender are configured (domain `quetschenhannes.de`, local env so far)
+- [x] Booking notification emails are received by the configured recipient (local test, Resend test sender)
+- [x] Cloudflare Turnstile keys are configured (local env so far)
+- [x] Turnstile verification rejects invalid submissions (verified locally with the real keys; production still to be checked after deployment)
 - [ ] Integration verification results are recorded in `loop-engineering/mvp_progress.md`
 
 ## Completed Tasks
@@ -110,12 +110,11 @@ This file is the live state tracker for loop engineering. The agent should updat
 
 | Task                               | Required Input or Condition                                    | Owner       | Date       | Next Action                                                                      |
 | ---------------------------------- | -------------------------------------------------------------- | ----------- | ---------- | -------------------------------------------------------------------------------- |
-| Supabase integration verification  | Supabase project URL and service role key                      | Human owner | 2026-07-13 | Create Supabase project and apply `supabase/migrations/001_booking_requests.sql` |
-| Resend email delivery verification | Resend API key and verified sender                             | Human owner | 2026-07-13 | Configure Resend account and env vars                                            |
-| Turnstile production verification  | Turnstile site and secret keys                                 | Human owner | 2026-07-13 | Create Turnstile site and add keys to production env                             |
-| Final artist content               | Name, bio, services, testimonials, contact details             | Human owner | 2026-07-13 | Update `frontend/content/site.ts`                                                         |
-| Final media assets                 | Hero, gallery images, video IDs, OG image, rights confirmation | Human owner | 2026-07-13 | Replace placeholders in `frontend/content/site.ts` and `frontend/public/images/`                   |
-| Legal page approval                | Impressum and Privacy Policy legal text                        | Human owner | 2026-07-13 | Replace placeholder legal copy after GDPR review                                 |
+| Resend production key              | Separate production API key and env vars in Vercel             | Human owner | 2026-10-03 | Create key at deployment and set production env vars                             |
+| Turnstile production keys          | Turnstile keys in Vercel env vars                              | Human owner | 2026-10-03 | Add both keys at deployment and re-test on the live site                         |
+| Artist content approval            | Artist sign-off on the German texts researched on 2026-10-03; real testimonials | Human owner | 2026-10-03 | Review `frontend/content/site.ts`; add testimonials when available |
+| Media rights and more photos       | Rights confirmation for the flyer photo and the third-party video; more and higher-quality photos | Human owner | 2026-10-03 | Confirm rights; add photos to `frontend/public/images/` |
+| Legal details and approval         | Postal address, VAT ID, photo credit; legal check of the texts | Human owner | 2026-10-03 | Fill `frontend/content/legal.ts`; have the texts checked                         |
 | Production deployment              | Vercel, domain, DNS, production secrets                        | Human owner | 2026-07-13 | Connect repo to Vercel and configure deployment                                  |
 
 ## Assumptions
@@ -125,8 +124,9 @@ This file is the live state tracker for loop engineering. The agent should updat
 - npm is the package manager.
 - Without Supabase credentials, booking requests persist to `frontend/data/booking-requests.json`.
 - Without Resend credentials, bookings are saved but notification emails are skipped.
-- Turnstile is enforced only in production when both Turnstile keys are configured.
-- Placeholder gallery images use Unsplash URLs for local development only.
+- Turnstile is enforced whenever both Turnstile keys are configured (changed 2026-10-03; previously production only).
+- The site is in German (informal "du", as on the artist's flyer) and branded "Quetschen-Hannes".
+- Hero, gallery and OG images are cropped from the flyer photo in `data/` (a photo of a printed flyer, so quality is limited).
 
 ## Assumptions Log
 
@@ -134,7 +134,10 @@ This file is the live state tracker for loop engineering. The agent should updat
 | ---------- | -------------------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------- |
 | 2026-07-13 | Next.js App Router, TypeScript, Tailwind CSS, Node.js 20.x+, and npm are the baseline. | Guides setup and verification commands.        | Project initialization starts.               |
 | 2026-07-13 | Local JSON file storage is acceptable when Supabase is not configured.                 | Enables local API testing without credentials. | Supabase credentials are provided.           |
-| 2026-07-13 | Placeholder Unsplash images are acceptable for local MVP only.                         | Gallery and hero render without human media.   | Final media assets and rights are confirmed. |
+| 2026-07-13 | Placeholder Unsplash images are acceptable for local MVP only.                         | Superseded 2026-10-03 by the flyer photo.      | —                                            |
+| 2026-10-03 | Biography facts from public actor profiles and an event listing are accurate.          | About page and homepage texts.                 | Artist reviews the texts.                    |
+| 2026-10-03 | Phone and email printed on the flyer may be published on the website.                  | Contact page, footer, structured data.         | Artist confirms public contact details.      |
+| 2026-10-03 | Booking event types fit a party entertainer (Geburtstag, Hochzeit, ...).               | Booking form and validation enum.              | Artist confirms the list.                    |
 
 ## Verification Log
 
@@ -155,6 +158,118 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | `npm run format:check`              | Pass   | After audit fix                          |
 | 2026-10-03 | `npm run test`                      | Pass   | 4 tests, vitest 3.2.7                    |
 | 2026-10-03 | `npm run build`                     | Pass   | 13 routes generated                      |
+| 2026-10-03 | lint, typecheck, format:check, test, build | Pass | After public website content update (4 tests, 13 routes) |
+| 2026-10-03 | POST `/api/booking` invalid payload | Pass   | HTTP 400 with German field errors        |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After design and UX update (4 tests)     |
+| 2026-10-03 | `next build` (temporary copy)       | Pass   | 13 routes; built outside `frontend/` because the dev server was running |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After email notification update (11 tests in 3 files); build not re-run |
+| 2026-10-03 | POST `/api/booking` valid payload   | Pass   | `storage: local`, `emailSent: false` (Resend not configured) |
+| 2026-10-03 | Booking form → notification email   | Pass   | Owner received the email via Resend test sender (local dev) |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After email HTML layout fix (11 tests); build not re-run |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After reliability changes (16 tests in 4 files); build not re-run |
+| 2026-10-03 | GET `/api/keep-alive` (dev server)  | Pass   | HTTP 200 `{"ok":true}` |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After Turnstile fixes (19 tests in 5 files) |
+| 2026-10-03 | `next build` (temporary copy, test keys) | Pass | Turnstile flow checked on port 3001 |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After legal pages (19 tests); build not re-run |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After image optimization (19 tests)      |
+| 2026-10-03 | `next build` (temporary copy)       | Pass   | 13 static pages, 2 API routes            |
+| 2026-10-03 | Turnstile with real keys (dev server) | Pass | Valid submission accepted; missing and forged tokens rejected (HTTP 400) |
+| 2026-10-03 | Booking email from own domain       | Pass   | Owner received the email from `anfrage@quetschenhannes.de` |
+| 2026-10-03 | Booking form → Supabase row         | Pass   | Row read back with the secret key; first attempt failed due to publishable key and `/rest/v1/` in the URL |
+
+## Public Website Content (2026-10-03)
+
+Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (Hannes Ducke):
+
+- Content source of truth: `frontend/content/site.ts` (German).
+- Images: `frontend/public/images/quetschen-hannes.jpg` (hero, gallery), `quetschen-hannes-flyer.jpg` (homepage, gallery), `quetschen-hannes-og.jpg` (Open Graph), all derived from `data/IMG-20260716-WA0003.jpg`.
+- Videos: YouTube IDs `-N4YfuetieY` (artist's own channel) and `Nzw2xUSu64c` (channel "Wir lieben Köpenick") from `data/youtube-links.txt`.
+- Contact details: phone and email as printed on the flyer.
+- Biography sources: schauspielervideos.de, neuestheater-hannover.de, neidig.org (via search summary), stadtleben.de event listing.
+- Testimonials: one invented placeholder (labelled "Beispiel-Kundin (Platzhalter)") was added on 2026-10-03 at the owner's request to preview the layout. It must be replaced with a real, approved quote or removed before launch. The homepage section renders only when `testimonials` is non-empty.
+- UI strings on public pages, navigation, footer, booking form and validation messages were translated to German; `<html lang>` is `de`.
+- Not changed: Impressum and Privacy pages still contain English placeholder text (section 10).
+
+## Design and UX Update (2026-10-03)
+
+- Colour scheme changed from violet to the flyer red (`--color-brand-*` in `frontend/styles/globals.css`), with warm neutrals and a dark footer.
+- Display font "Caprasimo" (via `next/font`) for headings and the logo, to echo the flyer lettering. Font variables moved to `<html>` so theme tokens resolve (Geist was previously not applied either).
+- Homepage: red hero with photo and two calls to action (enquiry form, tap-to-call), service cards, video teaser, three-step booking explanation, about teaser, closing call to action.
+- Navigation: sticky header with enquiry button, icon menu button on mobile, active page marked, skip link.
+- Videos load only after the visitor presses play (`components/media/LiteYouTube.tsx`, `youtube-nocookie.com`).
+- Gallery lightbox: closes with Escape, locks page scroll, shows images uncropped.
+- Contact page: tap-to-call and mail cards, larger form fields, placeholders, past dates disabled.
+- The three booking steps (`bookingSteps` in `frontend/content/site.ts`) describe a generic process and need the artist's confirmation.
+
+## Email Notification Update (2026-10-03)
+
+- Notification email (subject, text and HTML) is now German; the event date is shown as DD.MM.YYYY.
+- `replyTo` is set to the customer's address, so replying to the notification reaches the customer.
+- Email failures no longer pass silently: skipped (not configured) is logged with `console.warn`, failed sends with `console.error`, each with the booking id only. A thrown network error is caught and does not fail the booking.
+- Delivery verified on 2026-10-03: the owner configured Resend in `frontend/.env.local` (test sender `onboarding@resend.dev`), submitted the form locally and received the notification email.
+- After that test the HTML email was rebuilt as a complete document with padding, because the last line was cut off in the owner's mail client. The owner has not yet confirmed the fix with a new test email.
+- 2026-10-03: the domain `quetschenhannes.de` (registered at Porkbun) was verified in Resend; the four DNS records (DKIM, two CNAMEs, DMARC) resolve publicly. The owner received a test booking email from `anfrage@quetschenhannes.de`. Section 6 of the MVP plan is complete.
+- Still open: a separate production API key and production env vars at deployment.
+
+## Database Preparation (2026-10-03)
+
+- `supabase/migrations/001_booking_requests.sql` now enables row level security on `booking_requests` and revokes access from the `anon` and `authenticated` roles. Only the service role key used by the server can read or write.
+- 2026-10-03: the owner created the Supabase project (Frankfurt, Data API on, automatic table exposure off, automatic RLS on) and applied the script. Because automatic exposure is off, the script also grants the table to `service_role`.
+- Verified: a booking submitted through the local form was stored (1 row, status `new`), read back with the secret server key. Not verified: that the publishable key is actually denied access.
+- Saving failures are now logged with the database error, and the visitor sees a German error message.
+- Two follow-up tasks were added to section 5 of the MVP plan (2026-10-03, `TODO`): a daily keep-alive job against Supabase's free-plan pausing, and sending the notification email even when the database is unavailable.
+
+## Free-Plan Reliability (2026-10-03)
+
+- DONE: if saving to Supabase fails, the booking is still delivered by email (`storage: "email-only"`). The email then carries a notice that it is the only record. The visitor sees an error only when database and email both fail. Covered by unit tests with mocked database and email; not tested against a really paused project.
+- IN_PROGRESS: keep-alive job. `GET /api/keep-alive` runs a minimal query against `booking_requests`, and `frontend/vercel.json` schedules it daily at 05:00 UTC. Verified locally (HTTP 200). It only takes effect after deployment to Vercel with `CRON_SECRET` set; without the secret the endpoint returns 401 in production. Whether one read query per day is enough to prevent pausing still has to be observed after launch.
+
+## Turnstile Preparation (2026-10-03)
+
+- Bug fixed: the browser never saw the Turnstile site key, because public env vars were read dynamically (`process.env[name]`) and the widget's on/off switch depended on the secret key. With real keys the widget would not have rendered and the server would have rejected every booking. `getPublicEnv()` now reads `NEXT_PUBLIC_*` literally and enables the widget from the site key alone.
+- Bug fixed: the widget was re-rendered on every form re-render (duplicate widgets). It is now rendered once, removed on unmount, shown in German, and reset after a failed submission because a token is single-use.
+- Behaviour change: the server verifies tokens whenever both keys are set, not only in production, so it can be tested locally. This replaces the earlier assumption "Turnstile is enforced only in production".
+- Messages are German; the English "Turnstile is disabled" note on the form was removed.
+- Verified with Cloudflare's public test keys (always-pass) in a temporary production build on port 3001: widget renders once and yields a token, a browser submission succeeds, an API call without a token returns HTTP 400. Not verified: a rejected token (always-fail test secret) and the owner's real keys.
+- 2026-10-03: the owner created the Turnstile widget (Managed mode; hostnames `quetschenhannes.de`, `quetschen-hannes.de`, `localhost`) and set both keys in `frontend/.env.local`. Verified on the dev server with the real keys: the widget shows success, a real form submission went through and the notification email arrived, a request without a token and a request with a forged token were both rejected with HTTP 400.
+- Still open: the two keys in Vercel's environment variables at deployment, and mentioning Turnstile in the privacy policy.
+
+## Legal Pages and GDPR Review (2026-10-03)
+
+Status: `DONE` — Impressum and privacy policy are complete in German with the owner's details; the GDPR review was done as a technical review. None of this is legal advice and no lawyer has checked the texts.
+
+Pages:
+
+- `/impressum`: provider details (§ 5 DDG), contact, VAT ID, consumer dispute statement, link liability. The sections "Redaktionell verantwortlich" and "Bildnachweis" were removed on 2026-10-03 at the owner's request.
+- `/privacy`: controller, hosting, booking form (Supabase, Resend), Turnstile, YouTube, fonts, direct contact, third-country transfers, rights, date.
+- Legal details live in `frontend/content/legal.ts`. Values starting with `TODO` are rendered with a yellow highlight so they cannot go live unnoticed.
+- The booking form now shows a privacy notice with a link to the privacy policy above the send button.
+
+The postal address (Luisenstraße 10, 12557 Berlin) was supplied by the owner on 2026-10-03.
+
+The owner confirmed on 2026-10-03 that there is no VAT ID; the section is hidden (`vatId` is empty). Section 10 of the MVP plan is complete, with the texts still unchecked by a lawyer.
+
+Still to confirm with the artist:
+
+- Confirmation that "Hannes Ducke" is the legal name and that he, not the site builder, is the controller.
+
+GDPR review findings (technical):
+
+- No analytics, advertising or tracking code and no own cookies in the codebase; in the browser the homepage makes no third-party requests. A cookie banner is therefore not needed as long as this stays true.
+- Fonts are self-hosted by `next/font`; no request to Google.
+- YouTube: only loads after a click, via `youtube-nocookie.com`; preview images are proxied through the site's own image endpoint.
+- Turnstile: Cloudflare's script loads when the contact page opens, without prior consent. The policy relies on legitimate interest and "strictly necessary" (§ 25 Abs. 2 Nr. 2 TDDDG); this is a common position but not undisputed, and is the point most worth a lawyer's opinion.
+- Booking data: stored in Supabase (Frankfurt) behind row level security; sent by Resend (EU sending region); server logs contain only the booking id.
+- Open for the owner: accept the data processing agreements of Vercel, Supabase, Resend and Cloudflare; confirm the retention period (draft: twelve months, `retentionPeriod` in `legal.ts`) and actually delete old rows; verify the third-country transfer wording against each provider's current terms; re-check the hosting section once the site is deployed on Vercel.
+- Published personal data: the artist's phone number and email are on the site and in the public repository; needs his confirmation.
+
+## Image Optimization (2026-10-03)
+
+- AVIF is now served first, WebP as fallback (`images.formats` in `frontend/next.config.ts`). Measured on the dev server for the hero photo at 640px width: 18.4 kB AVIF vs 28.2 kB WebP (about 35% smaller); source JPEG is 127 kB.
+- `sizes` hints on all images now state the real rendered width, so browsers stop requesting oversized versions. In the browser at 1280px the hero (shown at 479px) loads the 640px version.
+- Optimized images are cached for 31 days (`minimumCacheTTL`).
+- Removed the three unused placeholder SVGs and the Unsplash remote pattern.
+- Not improvable in code: the photo itself is a photograph of a printed flyer. Better source photos remain a human input.
 
 ## Dependency Audit Notes
 
@@ -166,6 +281,10 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 
 ## Manual QA Notes (Local)
 
+- 2026-10-03 (design update, dev server): checked `/`, `/about`, `/gallery`, `/videos`, `/contact` at desktop width and 375px. Fonts and colours apply, mobile menu opens, lightbox opens and closes with Escape, video swaps to the player on click, no horizontal overflow. Not checked: actual video playback, booking form submission, Impressum and Privacy pages, keyboard-only navigation.
+
+- 2026-10-03: checked `/`, `/about`, `/gallery`, `/videos`, `/contact` against the production build on port 3001: all routes return 200, images load, both YouTube embeds render, no console errors, no horizontal overflow at 375px width. Booking form submission was not re-tested in the browser.
+
 - Public routes implemented: `/`, `/about`, `/gallery`, `/videos`, `/contact`, `/impressum`, `/privacy`
 - Navbar and footer render on all pages; legal links wired
 - Booking form includes loading, success, and error states
@@ -174,8 +293,8 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 
 ## Next Suggested Tasks
 
-1. Human owner: create Supabase project and apply `supabase/migrations/001_booking_requests.sql`
-2. Human owner: provide Resend and Turnstile credentials in `.env.local`
-3. Human owner: replace placeholder content in `frontend/content/site.ts`
-4. Human owner: approve legal text for Impressum and Privacy Policy
+1. Human owner: put the Supabase and Resend values into the production environment (Vercel) at deployment
+2. Human owner: add the Resend, Supabase, Turnstile and `CRON_SECRET` values to Vercel at deployment
+3. Human owner: have the artist review the texts in `frontend/content/site.ts`, confirm media rights, and supply more photos and real testimonials
+4. Human owner: supply the missing legal details for `frontend/content/legal.ts` and have the legal texts checked
 5. Human owner: deploy to Vercel and configure production domain

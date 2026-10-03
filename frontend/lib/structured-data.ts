@@ -8,7 +8,10 @@ export function getPersonStructuredData() {
     description: siteConfig.shortIntro,
     url: siteConfig.url,
     email: siteConfig.contactEmail,
-    jobTitle: "Actor and Musician",
+    jobTitle: "Akkordeonspieler und Entertainer",
+    alternateName: "Hannes Ducke",
+    telephone: siteConfig.contactPhone,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
   };
 }
 
@@ -19,6 +22,6 @@ export function getMusicianStructuredData() {
     name: siteConfig.name,
     description: artistBio.fullBio,
     url: siteConfig.url,
-    genre: ["TODO: replace with final genres"],
+    genre: ["Akkordeon", "Chanson", "Kabarett"],
   };
 }

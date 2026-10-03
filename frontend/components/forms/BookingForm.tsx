@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { eventTypes } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import {
@@ -23,7 +24,7 @@ const initialValues: BookingRequestFormData = {
   phone: "",
   event_date: "",
   event_location: "",
-  event_type: "Concert",
+  event_type: "Geburtstag",
   guest_count: 1,
   message: "",
   turnstileToken: undefined,
@@ -37,6 +38,14 @@ export function BookingForm() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const { turnstileEnabled } = getPublicEnv();
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+  const [minDate, setMinDate] = useState<string>();
+
+  // Set on the client only: the page is prerendered, so "today" at build
+  // time would be stale.
+  useEffect(() => {
+    setMinDate(new Date().toISOString().slice(0, 10));
+  }, []);
 
   function updateField<K extends keyof BookingRequestFormData>(
     key: K,
@@ -45,6 +54,12 @@ export function BookingForm() {
     setValues((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
     setFormError(null);
+  }
+
+  // Separate from updateField: a refreshed token must not wipe the error
+  // message of the attempt that triggered the refresh.
+  function setTurnstileToken(token: string | undefined) {
+    setValues((current) => ({ ...current, turnstileToken: token }));
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -68,7 +83,7 @@ export function BookingForm() {
     }
 
     if (turnstileEnabled && !parsed.data.turnstileToken) {
-      setFormError("Please complete the spam protection check.");
+      setFormError("Bitte bestätige die Spam-Schutz-Prüfung.");
       return;
     }
 
@@ -90,8 +105,13 @@ export function BookingForm() {
       };
 
       if (!response.ok) {
+        // The token was used up by this attempt; ask for a new one.
+        setTurnstileToken(undefined);
+        setTurnstileResetKey((key) => key + 1);
         setErrors(payload.errors ?? {});
-        setFormError(payload.message ?? "Submission failed. Please try again.");
+        setFormError(
+          payload.message ?? "Senden fehlgeschlagen. Bitte versuche es erneut.",
+        );
         setStatus("error");
         return;
       }
@@ -99,7 +119,7 @@ export function BookingForm() {
       setStatus("success");
       setValues(initialValues);
     } catch {
-      setFormError("Network error. Please try again.");
+      setFormError("Netzwerkfehler. Bitte versuche es erneut.");
       setStatus("error");
     }
   }
@@ -110,9 +130,10 @@ export function BookingForm() {
         className="border-success/30 rounded-2xl border bg-green-50 p-6 text-green-900"
         role="status"
       >
-        <h3 className="text-lg font-semibold">Booking request sent</h3>
+        <h3 className="text-lg font-semibold">Anfrage gesendet</h3>
         <p className="mt-2 text-sm">
-          Thank you. Your request has been received and will be reviewed soon.
+          Vielen Dank! Deine Anfrage ist angekommen – ich melde mich bald bei
+          dir.
         </p>
         <Button
           type="button"
@@ -120,7 +141,7 @@ export function BookingForm() {
           className="mt-4"
           onClick={() => setStatus("idle")}
         >
-          Send another request
+          Weitere Anfrage senden
         </Button>
       </div>
     );
@@ -143,7 +164,7 @@ export function BookingForm() {
           id="email"
           name="email"
           type="email"
-          label="Email"
+          label="E-Mail"
           autoComplete="email"
           required
           value={values.email}
@@ -154,7 +175,7 @@ export function BookingForm() {
           id="phone"
           name="phone"
           type="tel"
-          label="Phone"
+          label="Telefon"
           autoComplete="tel"
           required
           value={values.phone}
@@ -165,7 +186,8 @@ export function BookingForm() {
           id="event_date"
           name="event_date"
           type="date"
-          label="Event date"
+          label="Datum der Feier"
+          min={minDate}
           required
           value={values.event_date}
           error={errors.event_date}
@@ -174,7 +196,8 @@ export function BookingForm() {
         <TextField
           id="event_location"
           name="event_location"
-          label="Event location"
+          label="Ort der Feier"
+          placeholder="z. B. Berlin-Köpenick"
           required
           value={values.event_location}
           error={errors.event_location}
@@ -185,7 +208,7 @@ export function BookingForm() {
         <SelectField
           id="event_type"
           name="event_type"
-          label="Event type"
+          label="Anlass"
           required
           value={values.event_type}
           error={errors.event_type}
@@ -206,7 +229,7 @@ export function BookingForm() {
           id="guest_count"
           name="guest_count"
           type="number"
-          label="Number of guests"
+          label="Anzahl der Gäste"
           min={1}
           required
           value={values.guest_count}
@@ -220,7 +243,8 @@ export function BookingForm() {
       <TextAreaField
         id="message"
         name="message"
-        label="Message"
+        label="Nachricht"
+        placeholder="Was wird gefeiert? Gibt es Musikwünsche oder einen Zeitplan?"
         required
         value={values.message}
         error={errors.message}
@@ -228,8 +252,9 @@ export function BookingForm() {
       />
 
       <TurnstileWidget
-        onVerify={(token) => updateField("turnstileToken", token)}
-        onExpire={() => updateField("turnstileToken", undefined)}
+        onVerify={setTurnstileToken}
+        onExpire={() => setTurnstileToken(undefined)}
+        resetKey={turnstileResetKey}
       />
 
       {formError ? (
@@ -238,8 +263,22 @@ export function BookingForm() {
         </p>
       ) : null}
 
-      <Button type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Sending..." : "Submit booking request"}
+      <p className="text-muted text-sm leading-6">
+        Deine Angaben werden nur zur Bearbeitung deiner Anfrage verwendet. Mehr
+        dazu in der{" "}
+        <Link href="/privacy" className="text-brand-700 underline">
+          Datenschutzerklärung
+        </Link>
+        .
+      </p>
+
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full sm:w-auto"
+        disabled={status === "loading"}
+      >
+        {status === "loading" ? "Wird gesendet..." : "Anfrage senden"}
       </Button>
     </form>
   );
