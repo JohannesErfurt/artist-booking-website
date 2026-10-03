@@ -52,7 +52,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
               className="text-foreground absolute top-4 right-4 z-10 rounded-full bg-white/90 px-3 py-1 text-sm font-medium"
               onClick={() => setActiveImage(null)}
             >
-              Close
+              Schließen
             </button>
             <div className="relative aspect-[4/3] w-full">
               <Image

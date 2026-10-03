@@ -6,7 +6,7 @@ import { siteConfig, videoEmbeds } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Videos",
-  description: `Video performances by ${siteConfig.name}.`,
+  description: `Videos von Auftritten von ${siteConfig.name}.`,
 };
 
 export default function VideosPage() {
@@ -14,8 +14,8 @@ export default function VideosPage() {
     <PageLayout>
       <Section
         eyebrow="Videos"
-        title="Watch recent performances"
-        description="Placeholder YouTube embeds until final video URLs are provided."
+        title="Quetschen-Hannes in Aktion"
+        description="So klingt es, wenn Hannes zur Quetsche greift."
       >
         <div className="grid gap-8">
           {videoEmbeds.map((video) => (

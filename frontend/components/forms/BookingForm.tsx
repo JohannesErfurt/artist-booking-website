@@ -23,7 +23,7 @@ const initialValues: BookingRequestFormData = {
   phone: "",
   event_date: "",
   event_location: "",
-  event_type: "Concert",
+  event_type: "Geburtstag",
   guest_count: 1,
   message: "",
   turnstileToken: undefined,
@@ -68,7 +68,7 @@ export function BookingForm() {
     }
 
     if (turnstileEnabled && !parsed.data.turnstileToken) {
-      setFormError("Please complete the spam protection check.");
+      setFormError("Bitte bestätige die Spam-Schutz-Prüfung.");
       return;
     }
 
@@ -91,7 +91,9 @@ export function BookingForm() {
 
       if (!response.ok) {
         setErrors(payload.errors ?? {});
-        setFormError(payload.message ?? "Submission failed. Please try again.");
+        setFormError(
+          payload.message ?? "Senden fehlgeschlagen. Bitte versuche es erneut.",
+        );
         setStatus("error");
         return;
       }
@@ -99,7 +101,7 @@ export function BookingForm() {
       setStatus("success");
       setValues(initialValues);
     } catch {
-      setFormError("Network error. Please try again.");
+      setFormError("Netzwerkfehler. Bitte versuche es erneut.");
       setStatus("error");
     }
   }
@@ -110,9 +112,10 @@ export function BookingForm() {
         className="border-success/30 rounded-2xl border bg-green-50 p-6 text-green-900"
         role="status"
       >
-        <h3 className="text-lg font-semibold">Booking request sent</h3>
+        <h3 className="text-lg font-semibold">Anfrage gesendet</h3>
         <p className="mt-2 text-sm">
-          Thank you. Your request has been received and will be reviewed soon.
+          Vielen Dank! Deine Anfrage ist angekommen – ich melde mich bald bei
+          dir.
         </p>
         <Button
           type="button"
@@ -120,7 +123,7 @@ export function BookingForm() {
           className="mt-4"
           onClick={() => setStatus("idle")}
         >
-          Send another request
+          Weitere Anfrage senden
         </Button>
       </div>
     );
@@ -143,7 +146,7 @@ export function BookingForm() {
           id="email"
           name="email"
           type="email"
-          label="Email"
+          label="E-Mail"
           autoComplete="email"
           required
           value={values.email}
@@ -154,7 +157,7 @@ export function BookingForm() {
           id="phone"
           name="phone"
           type="tel"
-          label="Phone"
+          label="Telefon"
           autoComplete="tel"
           required
           value={values.phone}
@@ -165,7 +168,7 @@ export function BookingForm() {
           id="event_date"
           name="event_date"
           type="date"
-          label="Event date"
+          label="Datum der Feier"
           required
           value={values.event_date}
           error={errors.event_date}
@@ -174,7 +177,7 @@ export function BookingForm() {
         <TextField
           id="event_location"
           name="event_location"
-          label="Event location"
+          label="Ort der Feier"
           required
           value={values.event_location}
           error={errors.event_location}
@@ -185,7 +188,7 @@ export function BookingForm() {
         <SelectField
           id="event_type"
           name="event_type"
-          label="Event type"
+          label="Anlass"
           required
           value={values.event_type}
           error={errors.event_type}
@@ -206,7 +209,7 @@ export function BookingForm() {
           id="guest_count"
           name="guest_count"
           type="number"
-          label="Number of guests"
+          label="Anzahl der Gäste"
           min={1}
           required
           value={values.guest_count}
@@ -220,7 +223,7 @@ export function BookingForm() {
       <TextAreaField
         id="message"
         name="message"
-        label="Message"
+        label="Nachricht"
         required
         value={values.message}
         error={errors.message}
@@ -239,7 +242,7 @@ export function BookingForm() {
       ) : null}
 
       <Button type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Sending..." : "Submit booking request"}
+        {status === "loading" ? "Wird gesendet..." : "Anfrage senden"}
       </Button>
     </form>
   );

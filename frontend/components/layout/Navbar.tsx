@@ -23,7 +23,7 @@ export function Navbar() {
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
         >
-          Menu
+          Menü
         </button>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Main">

@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: false,
-        message: "Validation failed.",
+        message: "Bitte überprüfe deine Angaben.",
         errors,
       },
       { status: 400 },

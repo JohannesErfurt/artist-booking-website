@@ -8,14 +8,14 @@ export function Footer() {
         <div>
           <p className="text-lg font-semibold">{siteConfig.name}</p>
           <p className="text-muted mt-3 text-sm">
-            TODO: replace with final footer summary once artist content is
-            provided.
+            Akkordeon, Gesang und Humor für deine Feier – live mit Hannes Ducke
+            aus Berlin.
           </p>
         </div>
 
         <div>
           <p className="text-foreground text-sm font-semibold tracking-wide uppercase">
-            Contact
+            Kontakt
           </p>
           <p className="text-muted mt-3 text-sm">{siteConfig.contactEmail}</p>
           <p className="text-muted mt-1 text-sm">{siteConfig.contactPhone}</p>
@@ -23,7 +23,7 @@ export function Footer() {
 
         <div>
           <p className="text-foreground text-sm font-semibold tracking-wide uppercase">
-            Legal
+            Rechtliches
           </p>
           <ul className="mt-3 space-y-2">
             {legalLinks.map((link) => (
@@ -42,8 +42,7 @@ export function Footer() {
 
       <div className="border-border border-t">
         <div className="container-page text-muted py-4 text-sm">
-          © {new Date().getFullYear()} {siteConfig.name}. Placeholder content —
-          final legal and artist details require human review.
+          © {new Date().getFullYear()} {siteConfig.name}
         </div>
       </div>
     </footer>

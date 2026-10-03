@@ -30,10 +30,10 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "TODO: replace with final Open Graph image alt text",
+        alt: "Quetschen-Hannes lacht und spielt auf seinem roten Akkordeon",
       },
     ],
-    locale: "en_US",
+    locale: "de_DE",
     type: "website",
   },
   twitter: {
@@ -55,7 +55,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
+    <html lang="de">
       <body className={`${geistSans.variable} font-sans`}>
         <script
           type="application/ld+json"

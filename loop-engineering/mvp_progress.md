@@ -113,8 +113,8 @@ This file is the live state tracker for loop engineering. The agent should updat
 | Supabase integration verification  | Supabase project URL and service role key                      | Human owner | 2026-07-13 | Create Supabase project and apply `supabase/migrations/001_booking_requests.sql` |
 | Resend email delivery verification | Resend API key and verified sender                             | Human owner | 2026-07-13 | Configure Resend account and env vars                                            |
 | Turnstile production verification  | Turnstile site and secret keys                                 | Human owner | 2026-07-13 | Create Turnstile site and add keys to production env                             |
-| Final artist content               | Name, bio, services, testimonials, contact details             | Human owner | 2026-07-13 | Update `frontend/content/site.ts`                                                         |
-| Final media assets                 | Hero, gallery images, video IDs, OG image, rights confirmation | Human owner | 2026-07-13 | Replace placeholders in `frontend/content/site.ts` and `frontend/public/images/`                   |
+| Artist content approval            | Artist sign-off on the German texts researched on 2026-10-03; real testimonials | Human owner | 2026-10-03 | Review `frontend/content/site.ts`; add testimonials when available |
+| Media rights and more photos       | Rights confirmation for the flyer photo and the third-party video; more and higher-quality photos | Human owner | 2026-10-03 | Confirm rights; add photos to `frontend/public/images/` |
 | Legal page approval                | Impressum and Privacy Policy legal text                        | Human owner | 2026-07-13 | Replace placeholder legal copy after GDPR review                                 |
 | Production deployment              | Vercel, domain, DNS, production secrets                        | Human owner | 2026-07-13 | Connect repo to Vercel and configure deployment                                  |
 
@@ -126,7 +126,8 @@ This file is the live state tracker for loop engineering. The agent should updat
 - Without Supabase credentials, booking requests persist to `frontend/data/booking-requests.json`.
 - Without Resend credentials, bookings are saved but notification emails are skipped.
 - Turnstile is enforced only in production when both Turnstile keys are configured.
-- Placeholder gallery images use Unsplash URLs for local development only.
+- The site is in German (informal "du", as on the artist's flyer) and branded "Quetschen-Hannes".
+- Hero, gallery and OG images are cropped from the flyer photo in `data/` (a photo of a printed flyer, so quality is limited).
 
 ## Assumptions Log
 
@@ -134,7 +135,10 @@ This file is the live state tracker for loop engineering. The agent should updat
 | ---------- | -------------------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------- |
 | 2026-07-13 | Next.js App Router, TypeScript, Tailwind CSS, Node.js 20.x+, and npm are the baseline. | Guides setup and verification commands.        | Project initialization starts.               |
 | 2026-07-13 | Local JSON file storage is acceptable when Supabase is not configured.                 | Enables local API testing without credentials. | Supabase credentials are provided.           |
-| 2026-07-13 | Placeholder Unsplash images are acceptable for local MVP only.                         | Gallery and hero render without human media.   | Final media assets and rights are confirmed. |
+| 2026-07-13 | Placeholder Unsplash images are acceptable for local MVP only.                         | Superseded 2026-10-03 by the flyer photo.      | —                                            |
+| 2026-10-03 | Biography facts from public actor profiles and an event listing are accurate.          | About page and homepage texts.                 | Artist reviews the texts.                    |
+| 2026-10-03 | Phone and email printed on the flyer may be published on the website.                  | Contact page, footer, structured data.         | Artist confirms public contact details.      |
+| 2026-10-03 | Booking event types fit a party entertainer (Geburtstag, Hochzeit, ...).               | Booking form and validation enum.              | Artist confirms the list.                    |
 
 ## Verification Log
 
@@ -155,6 +159,21 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | `npm run format:check`              | Pass   | After audit fix                          |
 | 2026-10-03 | `npm run test`                      | Pass   | 4 tests, vitest 3.2.7                    |
 | 2026-10-03 | `npm run build`                     | Pass   | 13 routes generated                      |
+| 2026-10-03 | lint, typecheck, format:check, test, build | Pass | After public website content update (4 tests, 13 routes) |
+| 2026-10-03 | POST `/api/booking` invalid payload | Pass   | HTTP 400 with German field errors        |
+
+## Public Website Content (2026-10-03)
+
+Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (Hannes Ducke):
+
+- Content source of truth: `frontend/content/site.ts` (German).
+- Images: `frontend/public/images/quetschen-hannes.jpg` (hero, gallery), `quetschen-hannes-flyer.jpg` (homepage, gallery), `quetschen-hannes-og.jpg` (Open Graph), all derived from `data/IMG-20260716-WA0003.jpg`.
+- Videos: YouTube IDs `-N4YfuetieY` (artist's own channel) and `Nzw2xUSu64c` (channel "Wir lieben Köpenick") from `data/youtube-links.txt`.
+- Contact details: phone and email as printed on the flyer.
+- Biography sources: schauspielervideos.de, neuestheater-hannover.de, neidig.org (via search summary), stadtleben.de event listing.
+- Testimonials: none shown; the homepage section renders only when `testimonials` is non-empty.
+- UI strings on public pages, navigation, footer, booking form and validation messages were translated to German; `<html lang>` is `de`.
+- Not changed: Impressum and Privacy pages still contain English placeholder text (section 10).
 
 ## Dependency Audit Notes
 
@@ -166,6 +185,8 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 
 ## Manual QA Notes (Local)
 
+- 2026-10-03: checked `/`, `/about`, `/gallery`, `/videos`, `/contact` against the production build on port 3001: all routes return 200, images load, both YouTube embeds render, no console errors, no horizontal overflow at 375px width. Booking form submission was not re-tested in the browser.
+
 - Public routes implemented: `/`, `/about`, `/gallery`, `/videos`, `/contact`, `/impressum`, `/privacy`
 - Navbar and footer render on all pages; legal links wired
 - Booking form includes loading, success, and error states
@@ -176,6 +197,6 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 
 1. Human owner: create Supabase project and apply `supabase/migrations/001_booking_requests.sql`
 2. Human owner: provide Resend and Turnstile credentials in `.env.local`
-3. Human owner: replace placeholder content in `frontend/content/site.ts`
+3. Human owner: have the artist review the texts in `frontend/content/site.ts`, confirm media rights, and supply more photos and real testimonials
 4. Human owner: approve legal text for Impressum and Privacy Policy
 5. Human owner: deploy to Vercel and configure production domain

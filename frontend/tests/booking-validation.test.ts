@@ -9,7 +9,7 @@ describe("bookingRequestSchema", () => {
     phone: "+49 123 456789",
     event_date: "2026-12-01",
     event_location: "Berlin",
-    event_type: "Concert",
+    event_type: "Geburtstag",
     guest_count: 120,
     message: "We would like to discuss a live performance booking.",
   };

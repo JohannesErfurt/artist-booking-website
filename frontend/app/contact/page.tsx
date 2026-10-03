@@ -6,34 +6,48 @@ import { Card } from "@/components/ui/Card";
 import { siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: `Contact and booking requests for ${siteConfig.name}.`,
+  title: "Kontakt",
+  description: `Kontakt und Buchungsanfragen für ${siteConfig.name}.`,
 };
 
 export default function ContactPage() {
   return (
     <PageLayout>
       <Section
-        eyebrow="Contact"
-        title="Request a booking"
-        description="Share your event details below. All fields marked required must be completed."
+        eyebrow="Kontakt"
+        title="Deine Feier – mein Termin"
+        description="Erzähl mir kurz von deiner Feier. Bitte fülle alle Felder aus."
       >
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <Card>
-            <h3 className="text-xl font-semibold">Contact information</h3>
+            <h3 className="text-xl font-semibold">Direkter Kontakt</h3>
             <dl className="mt-6 space-y-4 text-sm">
               <div>
-                <dt className="text-foreground font-medium">Email</dt>
-                <dd className="text-muted mt-1">{siteConfig.contactEmail}</dd>
+                <dt className="text-foreground font-medium">E-Mail</dt>
+                <dd className="text-muted mt-1">
+                  <a
+                    href={`mailto:${siteConfig.contactEmail}`}
+                    className="hover:text-foreground underline"
+                  >
+                    {siteConfig.contactEmail}
+                  </a>
+                </dd>
               </div>
               <div>
-                <dt className="text-foreground font-medium">Phone</dt>
-                <dd className="text-muted mt-1">{siteConfig.contactPhone}</dd>
+                <dt className="text-foreground font-medium">Handy</dt>
+                <dd className="text-muted mt-1">
+                  <a
+                    href={`tel:${siteConfig.contactPhone.replace(/\s/g, "")}`}
+                    className="hover:text-foreground underline"
+                  >
+                    {siteConfig.contactPhone}
+                  </a>
+                </dd>
               </div>
             </dl>
             <p className="text-muted mt-6 text-sm">
-              TODO: replace placeholder contact details with final public
-              contact information.
+              Du kannst mich direkt anrufen, mir schreiben oder das Formular
+              nutzen.
             </p>
           </Card>
 
