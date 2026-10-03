@@ -117,7 +117,7 @@ Fields:
 
 - [x] Create API endpoint
 - [x] Store booking request
-- [ ] Send email notification
+- [x] Send email notification
 - [x] Handle errors gracefully
 
 ---
@@ -162,14 +162,14 @@ Status:
 
 ## Resend Setup
 
-- [ ] Create Resend account
-- [ ] Configure API key
+- [x] Create Resend account
+- [x] Configure API key
 - [ ] Verify domain
 
 ## Booking Notification
 
 - [x] Create email template
-- [ ] Send notification after booking request
+- [x] Send notification after booking request
 - [x] Handle email failures
 
 ---

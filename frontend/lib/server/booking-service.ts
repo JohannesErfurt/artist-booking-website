@@ -45,6 +45,19 @@ export async function processBookingSubmission(
     ...input,
   });
 
+  // The booking is already saved, so a failed email must not fail the
+  // request – but it has to be visible in the server logs. No personal data
+  // is logged, only the booking id.
+  if (emailResult.skipped) {
+    console.warn(
+      `[booking] Notification email skipped for booking ${bookingId}: ${emailResult.error}`,
+    );
+  } else if (!emailResult.success) {
+    console.error(
+      `[booking] Notification email FAILED for booking ${bookingId} (stored in ${storage}): ${emailResult.error}`,
+    );
+  }
+
   return {
     success: true,
     result: {

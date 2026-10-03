@@ -34,7 +34,7 @@ This file is the live state tracker for loop engineering. The agent should updat
 - [ ] `booking_requests` schema has been applied and verified
 - [ ] Booking API stores valid requests in Supabase
 - [ ] Resend account and verified sender are configured
-- [ ] Booking notification emails are received by the configured recipient
+- [x] Booking notification emails are received by the configured recipient (local test, Resend test sender)
 - [ ] Cloudflare Turnstile keys are configured
 - [ ] Turnstile verification rejects invalid production submissions
 - [ ] Integration verification results are recorded in `loop-engineering/mvp_progress.md`
@@ -111,7 +111,7 @@ This file is the live state tracker for loop engineering. The agent should updat
 | Task                               | Required Input or Condition                                    | Owner       | Date       | Next Action                                                                      |
 | ---------------------------------- | -------------------------------------------------------------- | ----------- | ---------- | -------------------------------------------------------------------------------- |
 | Supabase integration verification  | Supabase project URL and service role key                      | Human owner | 2026-07-13 | Create Supabase project and apply `supabase/migrations/001_booking_requests.sql` |
-| Resend email delivery verification | Resend API key and verified sender                             | Human owner | 2026-07-13 | Configure Resend account and env vars                                            |
+| Resend sending domain              | Own domain verified in Resend; production API key              | Human owner | 2026-10-03 | Buy domain, add Resend DNS records, set production env vars                      |
 | Turnstile production verification  | Turnstile site and secret keys                                 | Human owner | 2026-07-13 | Create Turnstile site and add keys to production env                             |
 | Artist content approval            | Artist sign-off on the German texts researched on 2026-10-03; real testimonials | Human owner | 2026-10-03 | Review `frontend/content/site.ts`; add testimonials when available |
 | Media rights and more photos       | Rights confirmation for the flyer photo and the third-party video; more and higher-quality photos | Human owner | 2026-10-03 | Confirm rights; add photos to `frontend/public/images/` |
@@ -163,6 +163,10 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | POST `/api/booking` invalid payload | Pass   | HTTP 400 with German field errors        |
 | 2026-10-03 | lint, typecheck, format:check, test | Pass   | After design and UX update (4 tests)     |
 | 2026-10-03 | `next build` (temporary copy)       | Pass   | 13 routes; built outside `frontend/` because the dev server was running |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After email notification update (11 tests in 3 files); build not re-run |
+| 2026-10-03 | POST `/api/booking` valid payload   | Pass   | `storage: local`, `emailSent: false` (Resend not configured) |
+| 2026-10-03 | Booking form → notification email   | Pass   | Owner received the email via Resend test sender (local dev) |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After email HTML layout fix (11 tests); build not re-run |
 
 ## Public Website Content (2026-10-03)
 
@@ -187,6 +191,15 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 - Gallery lightbox: closes with Escape, locks page scroll, shows images uncropped.
 - Contact page: tap-to-call and mail cards, larger form fields, placeholders, past dates disabled.
 - The three booking steps (`bookingSteps` in `frontend/content/site.ts`) describe a generic process and need the artist's confirmation.
+
+## Email Notification Update (2026-10-03)
+
+- Notification email (subject, text and HTML) is now German; the event date is shown as DD.MM.YYYY.
+- `replyTo` is set to the customer's address, so replying to the notification reaches the customer.
+- Email failures no longer pass silently: skipped (not configured) is logged with `console.warn`, failed sends with `console.error`, each with the booking id only. A thrown network error is caught and does not fail the booking.
+- Delivery verified on 2026-10-03: the owner configured Resend in `frontend/.env.local` (test sender `onboarding@resend.dev`), submitted the form locally and received the notification email.
+- After that test the HTML email was rebuilt as a complete document with padding, because the last line was cut off in the owner's mail client. The owner has not yet confirmed the fix with a new test email.
+- Still open: verifying an own sending domain in Resend (needs the domain) and production env vars.
 
 ## Dependency Audit Notes
 
