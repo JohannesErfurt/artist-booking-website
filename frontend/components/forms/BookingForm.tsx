@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { eventTypes } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import {
@@ -37,6 +37,13 @@ export function BookingForm() {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const { turnstileEnabled } = getPublicEnv();
+  const [minDate, setMinDate] = useState<string>();
+
+  // Set on the client only: the page is prerendered, so "today" at build
+  // time would be stale.
+  useEffect(() => {
+    setMinDate(new Date().toISOString().slice(0, 10));
+  }, []);
 
   function updateField<K extends keyof BookingRequestFormData>(
     key: K,
@@ -169,6 +176,7 @@ export function BookingForm() {
           name="event_date"
           type="date"
           label="Datum der Feier"
+          min={minDate}
           required
           value={values.event_date}
           error={errors.event_date}
@@ -178,6 +186,7 @@ export function BookingForm() {
           id="event_location"
           name="event_location"
           label="Ort der Feier"
+          placeholder="z. B. Berlin-Köpenick"
           required
           value={values.event_location}
           error={errors.event_location}
@@ -224,6 +233,7 @@ export function BookingForm() {
         id="message"
         name="message"
         label="Nachricht"
+        placeholder="Was wird gefeiert? Gibt es Musikwünsche oder einen Zeitplan?"
         required
         value={values.message}
         error={errors.message}
@@ -241,7 +251,12 @@ export function BookingForm() {
         </p>
       ) : null}
 
-      <Button type="submit" disabled={status === "loading"}>
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full sm:w-auto"
+        disabled={status === "loading"}
+      >
         {status === "loading" ? "Wird gesendet..." : "Anfrage senden"}
       </Button>
     </form>

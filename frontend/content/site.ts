@@ -1,4 +1,4 @@
-import type { SiteConfig, Testimonial } from "./types";
+import type { Service, SiteConfig, Testimonial } from "./types";
 
 export const siteConfig: SiteConfig = {
   name: "Quetschen-Hannes",
@@ -14,6 +14,11 @@ export const siteConfig: SiteConfig = {
   ogImage: "/images/quetschen-hannes-og.jpg",
 };
 
+export const contactLinks = {
+  phone: `tel:${siteConfig.contactPhone.replace(/\s/g, "")}`,
+  email: `mailto:${siteConfig.contactEmail}`,
+};
+
 // Sources for the facts below: public actor profiles (schauspielervideos.de,
 // neuestheater-hannover.de, neidig.org), the event listing for "Ein alter Witz
 // geht in Pension" (stadtleben.de) and the artist's own flyer.
@@ -27,24 +32,48 @@ export const artistBio = {
     "Als Quetschen-Hannes steht er seit vielen Jahren auf Kleinkunstbühnen und bei Festen, zum Beispiel mit dem humorvollen Kabarettprogramm „Ein alter Witz geht in Pension“ in Zilles Stubentheater in Berlin. Aus dem Fernsehen kennt man ihn aus Serien wie „Wolffs Revier“, „Lindenstraße“, „GZSZ“ und „Unter uns“.",
 };
 
-export const services = [
+export const services: Service[] = [
   {
     id: "private-feiern",
+    icon: "🎂",
     title: "Private Feiern",
     description:
       "Geburtstag, Hochzeit, Jubiläum oder Familienfest: Akkordeonmusik und Lieder zum Zuhören, Mitsingen und Schunkeln.",
   },
   {
     id: "feste",
+    icon: "🎪",
     title: "Feste & Veranstaltungen",
     description:
       "Hoffest, Straßenfest, Vereins- oder Firmenfeier: Live-Musik, die ohne große Technik auskommt und nah am Publikum ist.",
   },
   {
     id: "kabarett",
+    icon: "🎭",
     title: "Kabarett mit Akkordeon",
     description:
       "Humorvolle Unterhaltung mit Liedern, Witzen und Geschichten – vom Schauspieler mit der Quetsche.",
+  },
+];
+
+export const bookingSteps = [
+  {
+    id: "anfragen",
+    title: "Anfragen",
+    description:
+      "Schreib mir über das Formular oder ruf an: Wann, wo und was wird gefeiert?",
+  },
+  {
+    id: "absprechen",
+    title: "Absprechen",
+    description:
+      "Ich melde mich bei dir und wir klären gemeinsam Ablauf, Dauer und Musikwünsche.",
+  },
+  {
+    id: "feiern",
+    title: "Feiern",
+    description:
+      "Ich komme mit der Quetsche vorbei – und du kannst dich um deine Gäste kümmern.",
   },
 ];
 

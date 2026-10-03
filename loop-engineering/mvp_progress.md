@@ -161,6 +161,8 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | `npm run build`                     | Pass   | 13 routes generated                      |
 | 2026-10-03 | lint, typecheck, format:check, test, build | Pass | After public website content update (4 tests, 13 routes) |
 | 2026-10-03 | POST `/api/booking` invalid payload | Pass   | HTTP 400 with German field errors        |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After design and UX update (4 tests)     |
+| 2026-10-03 | `next build` (temporary copy)       | Pass   | 13 routes; built outside `frontend/` because the dev server was running |
 
 ## Public Website Content (2026-10-03)
 
@@ -175,6 +177,17 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 - UI strings on public pages, navigation, footer, booking form and validation messages were translated to German; `<html lang>` is `de`.
 - Not changed: Impressum and Privacy pages still contain English placeholder text (section 10).
 
+## Design and UX Update (2026-10-03)
+
+- Colour scheme changed from violet to the flyer red (`--color-brand-*` in `frontend/styles/globals.css`), with warm neutrals and a dark footer.
+- Display font "Caprasimo" (via `next/font`) for headings and the logo, to echo the flyer lettering. Font variables moved to `<html>` so theme tokens resolve (Geist was previously not applied either).
+- Homepage: red hero with photo and two calls to action (enquiry form, tap-to-call), service cards, video teaser, three-step booking explanation, about teaser, closing call to action.
+- Navigation: sticky header with enquiry button, icon menu button on mobile, active page marked, skip link.
+- Videos load only after the visitor presses play (`components/media/LiteYouTube.tsx`, `youtube-nocookie.com`).
+- Gallery lightbox: closes with Escape, locks page scroll, shows images uncropped.
+- Contact page: tap-to-call and mail cards, larger form fields, placeholders, past dates disabled.
+- The three booking steps (`bookingSteps` in `frontend/content/site.ts`) describe a generic process and need the artist's confirmation.
+
 ## Dependency Audit Notes
 
 Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moderate, 6 high). All require `npm audit fix --force` and were intentionally left:
@@ -184,6 +197,8 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 - `vitest` / `@vitest/mocker` (moderate): test tooling only; fix requires vitest 5 (breaking).
 
 ## Manual QA Notes (Local)
+
+- 2026-10-03 (design update, dev server): checked `/`, `/about`, `/gallery`, `/videos`, `/contact` at desktop width and 375px. Fonts and colours apply, mobile menu opens, lightbox opens and closes with Escape, video swaps to the player on click, no horizontal overflow. Not checked: actual video playback, booking form submission, Impressum and Privacy pages, keyboard-only navigation.
 
 - 2026-10-03: checked `/`, `/about`, `/gallery`, `/videos`, `/contact` against the production build on port 3001: all routes return 200, images load, both YouTube embeds render, no console errors, no horizontal overflow at 375px width. Booking form submission was not re-tested in the browser.
 

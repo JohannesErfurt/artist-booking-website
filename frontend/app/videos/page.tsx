@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { CallToAction } from "@/components/layout/CallToAction";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section } from "@/components/layout/Section";
-import { Card } from "@/components/ui/Card";
+import { LiteYouTube } from "@/components/media/LiteYouTube";
 import { siteConfig, videoEmbeds } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -17,28 +18,23 @@ export default function VideosPage() {
         title="Quetschen-Hannes in Aktion"
         description="So klingt es, wenn Hannes zur Quetsche greift."
       >
-        <div className="grid gap-8">
+        <div className="grid gap-8 lg:grid-cols-2">
           {videoEmbeds.map((video) => (
-            <Card key={video.id} className="overflow-hidden p-0">
-              <div className="aspect-video w-full">
-                <iframe
-                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                  title={video.title}
-                  className="h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
+            <article
+              key={video.id}
+              className="border-border overflow-hidden rounded-2xl border bg-white shadow-sm"
+            >
+              <LiteYouTube youtubeId={video.youtubeId} title={video.title} />
               <div className="p-6">
                 <h3 className="text-xl font-semibold">{video.title}</h3>
-                <p className="text-muted mt-3 text-sm leading-7">
-                  {video.description}
-                </p>
+                <p className="text-muted mt-3 leading-7">{video.description}</p>
               </div>
-            </Card>
+            </article>
           ))}
         </div>
       </Section>
+
+      <CallToAction />
     </PageLayout>
   );
 }

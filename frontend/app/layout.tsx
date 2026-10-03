@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Caprasimo, Geist } from "next/font/google";
 import { siteConfig } from "@/content/site";
 import {
   getMusicianStructuredData,
@@ -10,6 +10,14 @@ import "@/styles/globals.css";
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
+  display: "swap",
+});
+
+// Rounded retro display face, close to the lettering on the flyer.
+const displayFont = Caprasimo({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display-face",
   display: "swap",
 });
 
@@ -55,8 +63,10 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="de">
-      <body className={`${geistSans.variable} font-sans`}>
+    // Font variables must sit on <html>: the theme tokens that reference
+    // them are resolved on :root.
+    <html lang="de" className={`${geistSans.variable} ${displayFont.variable}`}>
+      <body className="font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

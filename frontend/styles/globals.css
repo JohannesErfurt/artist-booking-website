@@ -1,27 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede9fe;
-  --color-brand-200: #ddd6fe;
-  --color-brand-300: #c4b5fd;
-  --color-brand-400: #a78bfa;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
-  --color-brand-800: #5b21b6;
-  --color-brand-900: #4c1d95;
+  /* Red taken from the Quetschen-Hannes flyer. */
+  --color-brand-50: #fef2f3;
+  --color-brand-100: #fde3e5;
+  --color-brand-200: #fbccd0;
+  --color-brand-300: #f7a4ab;
+  --color-brand-400: #f06d7a;
+  --color-brand-500: #e53e51;
+  --color-brand-600: #d11f37;
+  --color-brand-700: #b0152b;
+  --color-brand-800: #921527;
+  --color-brand-900: #7a1626;
 
   --color-surface: #ffffff;
-  --color-surface-muted: #f8fafc;
-  --color-foreground: #0f172a;
-  --color-muted: #64748b;
-  --color-border: #e2e8f0;
-  --color-danger: #dc2626;
+  --color-surface-muted: #fbf6f1;
+  --color-foreground: #1c1412;
+  --color-muted: #6b5d58;
+  --color-border: #eadfd7;
+  --color-danger: #b91c1c;
   --color-success: #16a34a;
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+  --font-display:
+    var(--font-display-face), "Cooper Black", Georgia, "Times New Roman", serif;
 
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -39,10 +41,13 @@
   }
 
   h1,
-  h2,
+  h2 {
+    @apply font-display text-foreground font-normal;
+  }
+
   h3,
   h4 {
-    @apply font-display text-foreground tracking-tight;
+    @apply text-foreground font-sans tracking-tight;
   }
 
   a {
@@ -50,7 +55,20 @@
   }
 
   :focus-visible {
-    @apply outline-brand-600 outline-2 outline-offset-2;
+    @apply outline-foreground outline-2 outline-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
   }
 }
 

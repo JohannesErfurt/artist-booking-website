@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CallToAction } from "@/components/layout/CallToAction";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section } from "@/components/layout/Section";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
@@ -19,6 +20,8 @@ export default function GalleryPage() {
       >
         <GalleryGrid images={galleryImages} />
       </Section>
+
+      <CallToAction />
     </PageLayout>
   );
 }
