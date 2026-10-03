@@ -239,9 +239,9 @@ Free Supabase projects are paused after about a week without activity.
 
 Germany / EU:
 
-- [ ] Add Impressum
-- [ ] Add Privacy Policy
-- [ ] Review GDPR requirements
+- [x] Add Impressum
+- [x] Add Privacy Policy
+- [x] Review GDPR requirements
 
 ---
 

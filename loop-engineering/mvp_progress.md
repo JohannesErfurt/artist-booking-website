@@ -114,7 +114,7 @@ This file is the live state tracker for loop engineering. The agent should updat
 | Turnstile production keys          | Turnstile keys in Vercel env vars                              | Human owner | 2026-10-03 | Add both keys at deployment and re-test on the live site                         |
 | Artist content approval            | Artist sign-off on the German texts researched on 2026-10-03; real testimonials | Human owner | 2026-10-03 | Review `frontend/content/site.ts`; add testimonials when available |
 | Media rights and more photos       | Rights confirmation for the flyer photo and the third-party video; more and higher-quality photos | Human owner | 2026-10-03 | Confirm rights; add photos to `frontend/public/images/` |
-| Legal page approval                | Impressum and Privacy Policy legal text                        | Human owner | 2026-07-13 | Replace placeholder legal copy after GDPR review                                 |
+| Legal details and approval         | Postal address, VAT ID, photo credit; legal check of the texts | Human owner | 2026-10-03 | Fill `frontend/content/legal.ts`; have the texts checked                         |
 | Production deployment              | Vercel, domain, DNS, production secrets                        | Human owner | 2026-07-13 | Connect repo to Vercel and configure deployment                                  |
 
 ## Assumptions
@@ -170,6 +170,7 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | GET `/api/keep-alive` (dev server)  | Pass   | HTTP 200 `{"ok":true}` |
 | 2026-10-03 | lint, typecheck, format:check, test | Pass   | After Turnstile fixes (19 tests in 5 files) |
 | 2026-10-03 | `next build` (temporary copy, test keys) | Pass | Turnstile flow checked on port 3001 |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After legal pages (19 tests); build not re-run |
 | 2026-10-03 | Turnstile with real keys (dev server) | Pass | Valid submission accepted; missing and forged tokens rejected (HTTP 400) |
 | 2026-10-03 | Booking email from own domain       | Pass   | Owner received the email from `anfrage@quetschenhannes.de` |
 | 2026-10-03 | Booking form → Supabase row         | Pass   | Row read back with the secret key; first attempt failed due to publishable key and `/rest/v1/` in the URL |
@@ -231,6 +232,35 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 - 2026-10-03: the owner created the Turnstile widget (Managed mode; hostnames `quetschenhannes.de`, `quetschen-hannes.de`, `localhost`) and set both keys in `frontend/.env.local`. Verified on the dev server with the real keys: the widget shows success, a real form submission went through and the notification email arrived, a request without a token and a request with a forged token were both rejected with HTTP 400.
 - Still open: the two keys in Vercel's environment variables at deployment, and mentioning Turnstile in the privacy policy.
 
+## Legal Pages and GDPR Review (2026-10-03)
+
+Status: `DONE` — Impressum and privacy policy are complete in German with the owner's details; the GDPR review was done as a technical review. None of this is legal advice and no lawyer has checked the texts.
+
+Pages:
+
+- `/impressum`: provider details (§ 5 DDG), contact, VAT ID, consumer dispute statement, link liability. The sections "Redaktionell verantwortlich" and "Bildnachweis" were removed on 2026-10-03 at the owner's request.
+- `/privacy`: controller, hosting, booking form (Supabase, Resend), Turnstile, YouTube, fonts, direct contact, third-country transfers, rights, date.
+- Legal details live in `frontend/content/legal.ts`. Values starting with `TODO` are rendered with a yellow highlight so they cannot go live unnoticed.
+- The booking form now shows a privacy notice with a link to the privacy policy above the send button.
+
+The postal address (Luisenstraße 10, 12557 Berlin) was supplied by the owner on 2026-10-03.
+
+The owner confirmed on 2026-10-03 that there is no VAT ID; the section is hidden (`vatId` is empty). Section 10 of the MVP plan is complete, with the texts still unchecked by a lawyer.
+
+Still to confirm with the artist:
+
+- Confirmation that "Hannes Ducke" is the legal name and that he, not the site builder, is the controller.
+
+GDPR review findings (technical):
+
+- No analytics, advertising or tracking code and no own cookies in the codebase; in the browser the homepage makes no third-party requests. A cookie banner is therefore not needed as long as this stays true.
+- Fonts are self-hosted by `next/font`; no request to Google.
+- YouTube: only loads after a click, via `youtube-nocookie.com`; preview images are proxied through the site's own image endpoint.
+- Turnstile: Cloudflare's script loads when the contact page opens, without prior consent. The policy relies on legitimate interest and "strictly necessary" (§ 25 Abs. 2 Nr. 2 TDDDG); this is a common position but not undisputed, and is the point most worth a lawyer's opinion.
+- Booking data: stored in Supabase (Frankfurt) behind row level security; sent by Resend (EU sending region); server logs contain only the booking id.
+- Open for the owner: accept the data processing agreements of Vercel, Supabase, Resend and Cloudflare; confirm the retention period (draft: twelve months, `retentionPeriod` in `legal.ts`) and actually delete old rows; verify the third-country transfer wording against each provider's current terms; re-check the hosting section once the site is deployed on Vercel.
+- Published personal data: the artist's phone number and email are on the site and in the public repository; needs his confirmation.
+
 ## Dependency Audit Notes
 
 Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moderate, 6 high). All require `npm audit fix --force` and were intentionally left:
@@ -256,5 +286,5 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 1. Human owner: put the Supabase and Resend values into the production environment (Vercel) at deployment
 2. Human owner: add the Resend, Supabase, Turnstile and `CRON_SECRET` values to Vercel at deployment
 3. Human owner: have the artist review the texts in `frontend/content/site.ts`, confirm media rights, and supply more photos and real testimonials
-4. Human owner: approve legal text for Impressum and Privacy Policy
+4. Human owner: supply the missing legal details for `frontend/content/legal.ts` and have the legal texts checked
 5. Human owner: deploy to Vercel and configure production domain

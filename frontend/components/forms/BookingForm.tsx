@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { eventTypes } from "@/content/site";
 import { Button } from "@/components/ui/Button";
@@ -261,6 +262,15 @@ export function BookingForm() {
           {formError}
         </p>
       ) : null}
+
+      <p className="text-muted text-sm leading-6">
+        Deine Angaben werden nur zur Bearbeitung deiner Anfrage verwendet. Mehr
+        dazu in der{" "}
+        <Link href="/privacy" className="text-brand-700 underline">
+          Datenschutzerklärung
+        </Link>
+        .
+      </p>
 
       <Button
         type="submit"
