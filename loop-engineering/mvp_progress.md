@@ -173,7 +173,7 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 - Videos: YouTube IDs `-N4YfuetieY` (artist's own channel) and `Nzw2xUSu64c` (channel "Wir lieben Köpenick") from `data/youtube-links.txt`.
 - Contact details: phone and email as printed on the flyer.
 - Biography sources: schauspielervideos.de, neuestheater-hannover.de, neidig.org (via search summary), stadtleben.de event listing.
-- Testimonials: none shown; the homepage section renders only when `testimonials` is non-empty.
+- Testimonials: one invented placeholder (labelled "Beispiel-Kundin (Platzhalter)") was added on 2026-10-03 at the owner's request to preview the layout. It must be replaced with a real, approved quote or removed before launch. The homepage section renders only when `testimonials` is non-empty.
 - UI strings on public pages, navigation, footer, booking form and validation messages were translated to German; `<html lang>` is `de`.
 - Not changed: Impressum and Privacy pages still contain English placeholder text (section 10).
 

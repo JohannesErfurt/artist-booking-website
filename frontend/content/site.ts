@@ -77,8 +77,17 @@ export const bookingSteps = [
   },
 ];
 
-// No testimonials are shown until real, approved quotes are provided.
-export const testimonials: Testimonial[] = [];
+// TODO: PLACEHOLDER – invented example text to preview the layout only.
+// Replace with real, approved quotes (or empty the list) before launch.
+export const testimonials: Testimonial[] = [
+  {
+    id: "placeholder-1",
+    quote:
+      "Hannes hat unsere Feier mit seinem Akkordeon zu etwas ganz Besonderem gemacht. Alle haben mitgesungen und gelacht – genau so hatten wir es uns gewünscht!",
+    attribution: "Beispiel-Kundin (Platzhalter)",
+    role: "Beispiel: 60. Geburtstag",
+  },
+];
 
 export const galleryImages = [
   {
