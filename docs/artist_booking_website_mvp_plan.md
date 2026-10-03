@@ -126,8 +126,8 @@ Fields:
 
 ## Supabase Setup
 
-- [ ] Create Supabase project
-- [ ] Configure environment variables
+- [x] Create Supabase project
+- [x] Configure environment variables
 
 ## Booking Database
 

@@ -30,9 +30,9 @@ This file is the live state tracker for loop engineering. The agent should updat
 
 ## Integration MVP Definition of Done
 
-- [ ] Supabase project exists and required env vars are configured locally or in the target environment
-- [ ] `booking_requests` schema has been applied and verified
-- [ ] Booking API stores valid requests in Supabase
+- [x] Supabase project exists and required env vars are configured locally or in the target environment (local only so far)
+- [x] `booking_requests` schema has been applied and verified
+- [x] Booking API stores valid requests in Supabase
 - [ ] Resend account and verified sender are configured
 - [x] Booking notification emails are received by the configured recipient (local test, Resend test sender)
 - [ ] Cloudflare Turnstile keys are configured
@@ -110,7 +110,6 @@ This file is the live state tracker for loop engineering. The agent should updat
 
 | Task                               | Required Input or Condition                                    | Owner       | Date       | Next Action                                                                      |
 | ---------------------------------- | -------------------------------------------------------------- | ----------- | ---------- | -------------------------------------------------------------------------------- |
-| Supabase integration verification  | Supabase project URL and service role key                      | Human owner | 2026-07-13 | Create Supabase project and apply `supabase/migrations/001_booking_requests.sql` |
 | Resend sending domain              | Own domain verified in Resend; production API key              | Human owner | 2026-10-03 | Buy domain, add Resend DNS records, set production env vars                      |
 | Turnstile production verification  | Turnstile site and secret keys                                 | Human owner | 2026-07-13 | Create Turnstile site and add keys to production env                             |
 | Artist content approval            | Artist sign-off on the German texts researched on 2026-10-03; real testimonials | Human owner | 2026-10-03 | Review `frontend/content/site.ts`; add testimonials when available |
@@ -167,6 +166,7 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | POST `/api/booking` valid payload   | Pass   | `storage: local`, `emailSent: false` (Resend not configured) |
 | 2026-10-03 | Booking form → notification email   | Pass   | Owner received the email via Resend test sender (local dev) |
 | 2026-10-03 | lint, typecheck, format:check, test | Pass   | After email HTML layout fix (11 tests); build not re-run |
+| 2026-10-03 | Booking form → Supabase row         | Pass   | Row read back with the secret key; first attempt failed due to publishable key and `/rest/v1/` in the URL |
 
 ## Public Website Content (2026-10-03)
 
@@ -204,7 +204,9 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 ## Database Preparation (2026-10-03)
 
 - `supabase/migrations/001_booking_requests.sql` now enables row level security on `booking_requests` and revokes access from the `anon` and `authenticated` roles. Only the service role key used by the server can read or write.
-- The script has not been applied yet; the Supabase project is still to be created by the owner.
+- 2026-10-03: the owner created the Supabase project (Frankfurt, Data API on, automatic table exposure off, automatic RLS on) and applied the script. Because automatic exposure is off, the script also grants the table to `service_role`.
+- Verified: a booking submitted through the local form was stored (1 row, status `new`), read back with the secret server key. Not verified: that the publishable key is actually denied access.
+- Saving failures are now logged with the database error, and the visitor sees a German error message.
 - Two follow-up tasks were added to section 5 of the MVP plan (2026-10-03, `TODO`): a daily keep-alive job against Supabase's free-plan pausing, and sending the notification email even when the database is unavailable.
 
 ## Dependency Audit Notes
@@ -229,7 +231,7 @@ Remaining `npm audit` findings after the 2026-10-03 non-breaking fix (9: 3 moder
 
 ## Next Suggested Tasks
 
-1. Human owner: create Supabase project and apply `supabase/migrations/001_booking_requests.sql`
+1. Human owner: put the Supabase and Resend values into the production environment (Vercel) at deployment
 2. Human owner: provide Resend and Turnstile credentials in `.env.local`
 3. Human owner: have the artist review the texts in `frontend/content/site.ts`, confirm media rights, and supply more photos and real testimonials
 4. Human owner: approve legal text for Impressum and Privacy Policy

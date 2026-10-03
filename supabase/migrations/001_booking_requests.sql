@@ -30,3 +30,7 @@ create index if not exists booking_requests_status_idx
 alter table public.booking_requests enable row level security;
 
 revoke all on table public.booking_requests from anon, authenticated;
+
+-- Needed when the project was created with "Automatically expose new
+-- tables" switched off; harmless otherwise.
+grant all on table public.booking_requests to service_role;

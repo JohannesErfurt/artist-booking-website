@@ -24,9 +24,14 @@ export async function processBookingSubmission(
     const { data, error } = await insertBookingRequest(input);
 
     if (error || !data) {
+      console.error(
+        `[booking] Saving to Supabase FAILED: ${error ?? "no row returned"}`,
+      );
+
       return {
         success: false,
-        error: "Unable to save booking request. Please try again later.",
+        error:
+          "Die Anfrage konnte gerade nicht gespeichert werden. Bitte versuche es später erneut oder ruf einfach an.",
       };
     }
 
