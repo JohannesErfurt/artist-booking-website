@@ -45,6 +45,7 @@ This file tracks everything the coding agent should not invent or cannot complet
 - [ ] `RESEND_API_KEY`
 - [ ] `BOOKING_NOTIFICATION_TO`
 - [ ] `BOOKING_NOTIFICATION_FROM`
+- [ ] `CRON_SECRET` (production only; any long random string, used by the daily keep-alive job)
 
 ## Legal Details
 

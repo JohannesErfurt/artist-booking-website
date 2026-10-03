@@ -166,6 +166,8 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | POST `/api/booking` valid payload   | Pass   | `storage: local`, `emailSent: false` (Resend not configured) |
 | 2026-10-03 | Booking form → notification email   | Pass   | Owner received the email via Resend test sender (local dev) |
 | 2026-10-03 | lint, typecheck, format:check, test | Pass   | After email HTML layout fix (11 tests); build not re-run |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After reliability changes (16 tests in 4 files); build not re-run |
+| 2026-10-03 | GET `/api/keep-alive` (dev server)  | Pass   | HTTP 200 `{"ok":true}` |
 | 2026-10-03 | Booking form → Supabase row         | Pass   | Row read back with the secret key; first attempt failed due to publishable key and `/rest/v1/` in the URL |
 
 ## Public Website Content (2026-10-03)
@@ -208,6 +210,11 @@ Section 3 of the MVP plan was filled with real content for "Quetschen-Hannes" (H
 - Verified: a booking submitted through the local form was stored (1 row, status `new`), read back with the secret server key. Not verified: that the publishable key is actually denied access.
 - Saving failures are now logged with the database error, and the visitor sees a German error message.
 - Two follow-up tasks were added to section 5 of the MVP plan (2026-10-03, `TODO`): a daily keep-alive job against Supabase's free-plan pausing, and sending the notification email even when the database is unavailable.
+
+## Free-Plan Reliability (2026-10-03)
+
+- DONE: if saving to Supabase fails, the booking is still delivered by email (`storage: "email-only"`). The email then carries a notice that it is the only record. The visitor sees an error only when database and email both fail. Covered by unit tests with mocked database and email; not tested against a really paused project.
+- IN_PROGRESS: keep-alive job. `GET /api/keep-alive` runs a minimal query against `booking_requests`, and `frontend/vercel.json` schedules it daily at 05:00 UTC. Verified locally (HTTP 200). It only takes effect after deployment to Vercel with `CRON_SECRET` set; without the secret the endpoint returns 401 in production. Whether one read query per day is enough to prevent pausing still has to be observed after launch.
 
 ## Dependency Audit Notes
 

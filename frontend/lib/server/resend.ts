@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import type { BookingRequest } from "@/content/types";
 import { getServerEnv, hasResendConfig } from "@/lib/env";
 import {
+  type BookingNotificationOptions,
   buildBookingNotificationHtml,
   buildBookingNotificationSubject,
   buildBookingNotificationText,
@@ -13,6 +14,7 @@ export type BookingNotificationResult =
 
 export async function sendBookingNotification(
   booking: BookingRequest,
+  options: BookingNotificationOptions = {},
 ): Promise<BookingNotificationResult> {
   const env = getServerEnv();
 
@@ -33,8 +35,8 @@ export async function sendBookingNotification(
       // Replying to the notification reaches the person who sent the request.
       replyTo: booking.email,
       subject: buildBookingNotificationSubject(booking),
-      html: buildBookingNotificationHtml(booking),
-      text: buildBookingNotificationText(booking),
+      html: buildBookingNotificationHtml(booking, options),
+      text: buildBookingNotificationText(booking, options),
     });
 
     if (error) {

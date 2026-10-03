@@ -9,6 +9,7 @@ type EnvConfig = {
   resendApiKey: string;
   bookingNotificationTo: string;
   bookingNotificationFrom: string;
+  cronSecret: string;
   isProduction: boolean;
 };
 
@@ -26,6 +27,7 @@ export function getServerEnv(): EnvConfig {
     resendApiKey: readEnv("RESEND_API_KEY"),
     bookingNotificationTo: readEnv("BOOKING_NOTIFICATION_TO"),
     bookingNotificationFrom: readEnv("BOOKING_NOTIFICATION_FROM"),
+    cronSecret: readEnv("CRON_SECRET"),
     isProduction: process.env.NODE_ENV === "production",
   };
 }

@@ -15,6 +15,14 @@ function formatEventDate(isoDate: string): string {
   return year && month && day ? `${day}.${month}.${year}` : isoDate;
 }
 
+export type BookingNotificationOptions = {
+  // True when the request could not be saved to the database.
+  notStored?: boolean;
+};
+
+const NOT_STORED_NOTICE =
+  "Achtung: Diese Anfrage konnte nicht in der Datenbank gespeichert werden. Diese E-Mail ist der einzige Nachweis – bitte nicht löschen.";
+
 function getBookingFields(booking: BookingRequest) {
   return [
     ["Name", booking.name],
@@ -33,10 +41,14 @@ export function buildBookingNotificationSubject(
   return `Neue Anfrage: ${booking.event_type} am ${formatEventDate(booking.event_date)} (${booking.name})`;
 }
 
-export function buildBookingNotificationText(booking: BookingRequest): string {
+export function buildBookingNotificationText(
+  booking: BookingRequest,
+  options: BookingNotificationOptions = {},
+): string {
   return [
     "Neue Buchungsanfrage über die Website",
     "",
+    ...(options.notStored ? [NOT_STORED_NOTICE, ""] : []),
     ...getBookingFields(booking).map(([label, value]) => `${label}: ${value}`),
     "",
     "Nachricht:",
@@ -46,7 +58,14 @@ export function buildBookingNotificationText(booking: BookingRequest): string {
   ].join("\n");
 }
 
-export function buildBookingNotificationHtml(booking: BookingRequest): string {
+export function buildBookingNotificationHtml(
+  booking: BookingRequest,
+  options: BookingNotificationOptions = {},
+): string {
+  const notice = options.notStored
+    ? `<p style="margin:0 0 16px;padding:12px;border:1px solid #d11f37;background:#fef2f3;color:#7a1626;font-size:14px;">${escapeHtml(NOT_STORED_NOTICE)}</p>`
+    : "";
+
   const rows = getBookingFields(booking)
     .map(
       ([label, value]) =>
@@ -66,6 +85,7 @@ export function buildBookingNotificationHtml(booking: BookingRequest): string {
   <body style="margin:0;padding:0;">
     <div style="max-width:600px;padding:24px 16px 48px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#1c1412;">
       <h1 style="margin:0 0 16px;font-size:22px;line-height:1.3;">Neue Buchungsanfrage über die Website</h1>
+      ${notice}
       <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:16px;">
         ${rows}
       </table>

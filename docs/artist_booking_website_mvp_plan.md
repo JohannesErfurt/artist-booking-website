@@ -161,7 +161,7 @@ Status:
 Free Supabase projects are paused after about a week without activity.
 
 - [ ] Keep the database awake with a daily scheduled job (e.g. Vercel Cron)
-- [ ] Still send the notification email when the database is unavailable
+- [x] Still send the notification email when the database is unavailable
 
 ---
 
