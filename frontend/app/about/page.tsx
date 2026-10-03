@@ -34,7 +34,7 @@ export default function AboutPage() {
                 alt={portrait.alt}
                 width={portrait.width}
                 height={portrait.height}
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 420px) 100vw, 384px"
                 className="h-auto w-full"
               />
             </div>

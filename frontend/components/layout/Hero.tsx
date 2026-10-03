@@ -54,7 +54,7 @@ export function Hero({
                 alt={imageAlt}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 480px) 100vw, 480px"
                 className="object-cover"
               />
             </div>

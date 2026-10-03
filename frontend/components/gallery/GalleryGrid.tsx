@@ -50,7 +50,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
               src={image.src}
               alt={image.alt}
               fill
-              sizes="(max-width: 640px) 100vw, 50vw"
+              sizes="(max-width: 640px) 100vw, 540px"
               className="object-cover object-top transition duration-300 group-hover:scale-105"
             />
             <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 pt-10 text-sm font-medium text-white">
@@ -86,7 +86,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
               alt={activeImage.alt}
               width={activeImage.width}
               height={activeImage.height}
-              sizes="100vw"
+              sizes="(max-width: 1200px) 100vw, 1200px"
               className="max-h-[80vh] w-auto rounded-lg object-contain"
             />
             <figcaption className="mt-4 text-center text-sm text-white">

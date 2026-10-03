@@ -171,6 +171,8 @@ This file is the live state tracker for loop engineering. The agent should updat
 | 2026-10-03 | lint, typecheck, format:check, test | Pass   | After Turnstile fixes (19 tests in 5 files) |
 | 2026-10-03 | `next build` (temporary copy, test keys) | Pass | Turnstile flow checked on port 3001 |
 | 2026-10-03 | lint, typecheck, format:check, test | Pass   | After legal pages (19 tests); build not re-run |
+| 2026-10-03 | lint, typecheck, format:check, test | Pass   | After image optimization (19 tests)      |
+| 2026-10-03 | `next build` (temporary copy)       | Pass   | 13 static pages, 2 API routes            |
 | 2026-10-03 | Turnstile with real keys (dev server) | Pass | Valid submission accepted; missing and forged tokens rejected (HTTP 400) |
 | 2026-10-03 | Booking email from own domain       | Pass   | Owner received the email from `anfrage@quetschenhannes.de` |
 | 2026-10-03 | Booking form → Supabase row         | Pass   | Row read back with the secret key; first attempt failed due to publishable key and `/rest/v1/` in the URL |
@@ -260,6 +262,14 @@ GDPR review findings (technical):
 - Booking data: stored in Supabase (Frankfurt) behind row level security; sent by Resend (EU sending region); server logs contain only the booking id.
 - Open for the owner: accept the data processing agreements of Vercel, Supabase, Resend and Cloudflare; confirm the retention period (draft: twelve months, `retentionPeriod` in `legal.ts`) and actually delete old rows; verify the third-country transfer wording against each provider's current terms; re-check the hosting section once the site is deployed on Vercel.
 - Published personal data: the artist's phone number and email are on the site and in the public repository; needs his confirmation.
+
+## Image Optimization (2026-10-03)
+
+- AVIF is now served first, WebP as fallback (`images.formats` in `frontend/next.config.ts`). Measured on the dev server for the hero photo at 640px width: 18.4 kB AVIF vs 28.2 kB WebP (about 35% smaller); source JPEG is 127 kB.
+- `sizes` hints on all images now state the real rendered width, so browsers stop requesting oversized versions. In the browser at 1280px the hero (shown at 479px) loads the 640px version.
+- Optimized images are cached for 31 days (`minimumCacheTTL`).
+- Removed the three unused placeholder SVGs and the Unsplash remote pattern.
+- Not improvable in code: the photo itself is a photograph of a printed flyer. Better source photos remain a human input.
 
 ## Dependency Audit Notes
 

@@ -39,7 +39,7 @@ export function LiteYouTube({ youtubeId, title }: LiteYouTubeProps) {
         src={`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`}
         alt=""
         fill
-        sizes="(max-width: 1024px) 100vw, 50vw"
+        sizes="(max-width: 640px) 100vw, 640px"
         className="object-cover opacity-90 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
       />
       <span className="absolute inset-0 flex items-center justify-center">

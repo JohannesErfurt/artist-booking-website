@@ -204,7 +204,7 @@ Free Supabase projects are paused after about a week without activity.
 
 ## Images
 
-- [ ] Optimize image sizes
+- [x] Optimize image sizes
 - [x] Use WebP/AVIF where appropriate
 - [x] Enable lazy loading
 
